@@ -1,0 +1,17 @@
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+*.test
+go.work
+go.work.sum
+
+.env
+
+bin
+tmp
+
+**/*_templ.go
+**/*_templ.txt
