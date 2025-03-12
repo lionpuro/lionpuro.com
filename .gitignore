@@ -10,8 +10,11 @@ go.work.sum
 
 .env
 
+node_modules
 bin
 tmp
 
 **/*_templ.go
 **/*_templ.txt
+
+static/global.css

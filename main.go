@@ -13,6 +13,7 @@ func main() {
 	port := os.Getenv("PORT")
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /", indexHandler)
+	mux.Handle("GET /assets/", http.StripPrefix("/assets", http.FileServer(http.Dir("static"))))
 
 	server := &http.Server{
 		Addr:    fmt.Sprintf(":%s", port),
