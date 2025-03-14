@@ -1,20 +1,36 @@
 package views
 
-templ Base() {
+import "github.com/lionpuro/portfolio/locales"
+
+templ Base(title, description string) {
 	<!DOCTYPE html>
-	<html lang="en">
+	<html lang={ locales.LocaleCode(ctx) }>
 		<head>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			@metaDescription(description)
 			<link rel="stylesheet" href="/assets/global.css"/>
 			<link rel="icon" href="/assets/favicon.ico"/>
+			<title>{ title }</title>
 		</head>
 		<body>
-			<div class="flex flex-col min-h-full">
+			<div id="root" class="flex flex-col min-h-full">
 				<main class="mx-auto flex flex-col max-w-screen-lg w-full">
 					{ children... }
 				</main>
 			</div>
 		</body>
 	</html>
+}
+
+templ FullPage(component templ.Component, title, description string) {
+	@Base(title, description) {
+		@component
+	}
+}
+
+templ metaDescription(desc string) {
+	if desc != "" {
+		<meta name="description" content={ desc }/>
+	}
 }

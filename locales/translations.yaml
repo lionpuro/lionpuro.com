@@ -1,0 +1,10 @@
+en:
+  home:
+    title: "Hi, I'm Lion"
+    web-developer: "Web Developer"
+    description: "Description"
+fi:
+  home:
+    title: "Moi, Olen Lion"
+    web-developer: "Web Kehittäjä"
+    description: "Description"
