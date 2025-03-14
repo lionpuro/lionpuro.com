@@ -1,0 +1,39 @@
+package views
+
+import (
+	"strconv"
+	"time"
+)
+
+func yearString() string {
+	y := time.Now().UTC().Year()
+	return strconv.Itoa(y)
+}
+
+templ Footer() {
+	<footer class="mt-auto mx-auto max-w-screen-lg w-full flex items-center justify-between p-2 px-8 text-sm">
+		<span class="font-medium text-base-300">© { yearString() } Lion Puro</span>
+		<div class="flex">
+			<a
+				href={ github_url }
+				aria-label="github"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="flex items-center gap-2 p-2 font-semibold text-base-200 hover:text-base-50"
+			>
+				@iconGithub("size-5 fill-base-50")
+				github
+			</a>
+			<a
+				href={ linkedin_url }
+				aria-label="linkedin"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="flex items-center gap-2 p-2 font-semibold text-base-200 hover:text-base-50"
+			>
+				@iconLinkedin("size-5 fill-[#0a66c2]")
+				linkedin
+			</a>
+		</div>
+	</footer>
+}
