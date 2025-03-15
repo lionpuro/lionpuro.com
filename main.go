@@ -25,7 +25,7 @@ func main() {
 	submux := http.NewServeMux()
 	submux.HandleFunc("GET /", indexHandler)
 
-	mux.Handle("GET /assets/", http.StripPrefix("/assets", http.FileServer(http.Dir("static"))))
+	mux.Handle("GET /static/", http.StripPrefix("/static", http.FileServer(http.Dir("static"))))
 	mux.HandleFunc("/", languageMiddleware(submux))
 
 	server := &http.Server{
