@@ -60,12 +60,17 @@ func detectLanguage(r *http.Request) string {
 func languageMiddleware(next http.Handler) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		pathSegments := strings.Split(r.URL.Path, "/")
-		lang := pathSegments[1]
-		if lang != "en" && lang != "fi" {
-			lang = detectLanguage(r)
-			url := path.Join("/", lang)
+		langParam := pathSegments[1]
+		lang := detectLanguage(r)
+
+		if lang == "fi" && langParam == "" {
+			url := path.Join("/", "fi")
 			http.Redirect(w, r, url, http.StatusFound)
 			return
+		}
+
+		if langParam == "fi" || langParam == "en" {
+			lang = langParam
 		}
 
 		ctx, err := ctxi18n.WithLocale(r.Context(), lang)
