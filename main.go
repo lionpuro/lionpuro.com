@@ -30,7 +30,7 @@ func main() {
 
 	server := &http.Server{
 		Addr:    fmt.Sprintf(":%s", port),
-		Handler: mux,
+		Handler: gzipHandler(mux),
 	}
 
 	fmt.Printf("Listening on port %s\n", port)
