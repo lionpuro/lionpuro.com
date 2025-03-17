@@ -1,7 +1,7 @@
 build:
 	@npx @tailwindcss/cli -i ./input.css -o ./static/global.css --minify
 	@templ generate views
-	@go build -o bin/app main.go
+	@go build -o bin/app .
 
 run: build
 	@./bin/app
@@ -9,3 +9,6 @@ run: build
 fmt:
 	@templ fmt views
 	@gofmt -l -s -w .
+
+dev:
+	@air -c .air.toml
