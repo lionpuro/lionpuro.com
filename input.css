@@ -66,5 +66,11 @@ body {
 }
 
 body {
-	@apply bg-base-950 text-base-50;
+	@apply bg-base-950 text-base-white;
+}
+
+@layer base {
+	strong, b {
+		@apply font-semibold text-base-white;
+	}
 }

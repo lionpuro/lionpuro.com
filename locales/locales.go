@@ -6,7 +6,7 @@ import (
 	"github.com/invopop/ctxi18n/i18n"
 )
 
-//go:embed translations.yaml
+//go:embed fi en
 var Content embed.FS
 
 func LocaleCode(ctx context.Context) string {
