@@ -6,3 +6,8 @@ fi:
     problem-solving: "joka nauttii ongelmien ratkaisemisesta luovalla tavalla. "
     my-passion: ", jolle ongelmanratkaisu ja tehokkaiden kokonaisuuksien rakentaminen on intohimo. "
     looking-for: "Etsin mahdollisuuksia hyödyntää taitojani web-kehityksessä, jatkaa oppimista ja kasvaa sekä kehittäjänä että ihmisenä."
+  projects:
+    heading: "Projektit"
+    mug-editor:
+      title: "Mukieditori"
+      description: "Mukieditori Mikko Kankainen Oy:n verkkokauppaan. Sen avulla asiakas voi suunnitella haluamansa näköisen mukin lisäämällä kuvia ja tekstiä ja nähdä 3D-mallin mukista."

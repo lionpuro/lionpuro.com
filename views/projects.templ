@@ -1,0 +1,60 @@
+package views
+
+import "fmt"
+
+type projectData struct {
+	id    string
+	image string
+	url   string
+	repo  string
+	tags  []string
+}
+
+templ projects(projects []projectData) {
+	<div class="flex flex-col gap-8">
+		for _, p := range projects {
+			<div class="flex flex-col md:flex-row-reverse md:gap-8 md:p-8 overflow-hidden rounded-md border border-base-900">
+				<img src={ p.image } alt="" loading="lazy" class="shrink-0 rounded-md max-md:rounded-b-none aspect-video md:w-[calc(50%-1rem)]"/>
+				<div class="grow flex flex-col gap-3 max-md:p-8">
+					<div class="flex items-center gap-2">
+						<h3 class="text-xl sm:text-2xl font-bold">
+							@t(fmt.Sprintf("projects.%s.title", p.id))
+						</h3>
+						<span class="ml-auto flex gap-2">
+							if p.repo != "" {
+								<a
+									href={ templ.URL(p.repo) }
+									target="_blank"
+									rel="noreferrer"
+									class="text-base-400 hover:text-base-50"
+								>
+									@iconGithub()
+								</a>
+							}
+							if p.url != "" {
+								<a
+									href={ templ.URL(p.url) }
+									target="_blank"
+									rel="noreferrer"
+									class="text-base-400 hover:text-base-50"
+								>
+									@iconLink()
+								</a>
+							}
+						</span>
+					</div>
+					<p class="font-medium text-base-300">
+						@t(fmt.Sprintf("projects.%s.description", p.id))
+					</p>
+					<div class="flex gap-2">
+						for _, t := range p.tags {
+							<div class={ "rounded-md bg-base-900 p-1 px-2 text-sm font-semibold", templ.KV("text-primary-400", t == "Frontend" || t == "Full-stack") }>
+								{ t }
+							</div>
+						}
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+}

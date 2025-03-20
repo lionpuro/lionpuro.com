@@ -42,4 +42,18 @@ templ Home() {
 			</div>
 		</div>
 	</div>
+	@section("projects") {
+		@sectionHeading() {
+			@t("projects.heading")
+		}
+		@projects([]projectData{
+			{
+				id:    "mug-editor",
+				image: "/static/images/mug-editor-demo.png",
+				url:   "https://kankainen.org/mukieditori",
+				repo:  "",
+				tags:  []string{"Frontend", "TypeScript", "React"},
+			},
+		})
+	}
 }
