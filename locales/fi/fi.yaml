@@ -1,11 +1,11 @@
 fi:
   intro:
     hello-i-am: "Hei, olen"
-    a: " "
+    enthusiastic: "motivoitunut "
     full-stack-developer: "full-stack-kehittäjä"
-    problem-solving: "joka nauttii ongelmien ratkaisemisesta luovalla tavalla. "
-    my-passion: ", jolle ongelmanratkaisu ja tehokkaiden kokonaisuuksien rakentaminen on intohimo. "
-    looking-for: "Etsin mahdollisuuksia hyödyntää taitojani web-kehityksessä, jatkaa oppimista ja kasvaa sekä kehittäjänä että ihmisenä."
+    my-passion: ", jolle ongelmanratkaisu ja web-kehitys on intohimo. "
+    here: "Täältä"
+    you-can-find: " löydät joitain kehittämiäni ratkaisuja erilaisiin ongelmiin. "
   projects:
     heading: "Projektit"
     mug-editor:

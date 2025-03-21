@@ -1,11 +1,11 @@
 en:
   intro:
     hello-i-am: "Hi, I'm"
-    a: "a "
+    enthusiastic: "an enthusiastic "
     full-stack-developer: "full-stack developer "
-    problem-solving: "who loves solving problems in a creative way. "
-    my-passion: "with a passion for solving problems and building efficient applications from frontend to backend. "
-    looking-for: "I'm looking for new opportunities where I can contribute my skills, continue learning and grow as not only a developer but as a person as well."
+    my-passion: "with a passion for problem solving and web-development. "
+    here: "Here"
+    you-can-find: " you can find some of the things I've developed to solve different problems. "
   projects:
     heading: "Projects"
     mug-editor:
