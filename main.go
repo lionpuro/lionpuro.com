@@ -38,7 +38,7 @@ func main() {
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	views.FullPage(views.Home(), "Lion Puro", "").Render(r.Context(), w)
+	views.FullPage(views.Home(), "Lion Puro", "A full-stack web-developer").Render(r.Context(), w)
 }
 
 func detectLanguage(r *http.Request) string {
