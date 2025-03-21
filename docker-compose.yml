@@ -1,0 +1,27 @@
+name: lionpuro.com
+networks:
+  caddy:
+services:
+  server:
+    env_file: ".env"
+    build:
+      context: .
+      target: release
+    ports:
+      - "3000"
+    networks:
+      - caddy
+  caddy:
+    build:
+      context: .
+      dockerfile_inline: |
+        FROM caddy:latest
+        COPY Caddyfile /etc/caddy/Caddyfile
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - server
+    networks:
+      - caddy

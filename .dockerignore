@@ -1,0 +1,14 @@
+.git
+.gitignore
+.dockerignore
+Dockerfile
+docker-compose.yml
+Makefile
+bin/
+tmp/
+node_modules/
+
+**/*_templ.go
+**/*_templ.txt
+
+static/global.css

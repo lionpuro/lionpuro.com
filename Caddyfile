@@ -1,0 +1,7 @@
+www.lionpuro.com {
+	redir https://lionpuro.com{uri} permanent
+}
+
+lionpuro.com {
+	reverse_proxy server:3000
+}

@@ -1,3 +1,15 @@
+include .env
+export
+
+docker-build:
+	DOCKER_HOST=$(DOCKER_HOST) docker compose build
+
+docker-stop:
+	DOCKER_HOST=$(DOCKER_HOST) docker compose stop
+
+docker-up:
+	DOCKER_HOST=$(DOCKER_HOST) docker compose up -d
+
 build:
 	@npx @tailwindcss/cli -i ./input.css -o ./static/global.css --minify
 	@templ generate views
