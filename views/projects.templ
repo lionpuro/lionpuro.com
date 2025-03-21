@@ -15,7 +15,7 @@ templ projects(projects []projectData) {
 		for _, p := range projects {
 			<div class="flex flex-col md:flex-row-reverse md:gap-8 md:p-8 overflow-hidden rounded-md border border-base-900">
 				<img src={ p.image } alt="" loading="lazy" class="shrink-0 rounded-md max-md:rounded-b-none aspect-video md:w-[calc(50%-1rem)]"/>
-				<div class="grow flex flex-col gap-3 max-md:p-8">
+				<div class="grow flex flex-col gap-3 max-md:p-6">
 					<div class="flex items-center gap-2">
 						<h3 class="text-xl sm:text-2xl font-bold">
 							@t(fmt.Sprintf("projects.%s.title", p.id))
