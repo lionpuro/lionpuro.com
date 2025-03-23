@@ -14,9 +14,9 @@ templ Base(title, description string) {
 			<title>{ title }</title>
 		</head>
 		<body>
-			<div id="root" class="flex flex-col min-h-full">
+			<div id="root" class="flex flex-col min-h-full w-full max-w-3xl mx-auto">
 				@Header(locales.LocaleCode(ctx))
-				<main class="mx-auto flex flex-col max-w-screen-lg w-full">
+				<main class="flex flex-col p-6 sm:p-8">
 					{ children... }
 				</main>
 				@Footer()
