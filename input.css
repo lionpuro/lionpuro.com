@@ -74,3 +74,20 @@ body {
 		@apply font-semibold text-base-white;
 	}
 }
+
+@layer components {
+	.blog-post {
+		h1 {
+			@apply text-3xl sm:text-4xl font-bold mb-8;
+		}
+		h2 {
+			@apply text-2xl font-bold mb-4 mt-8;
+		}
+		h3 {
+			@apply text-xl font-semibold mb-3 mt-4;
+		}
+		p {
+			@apply text-base-200 mb-4 max-w-2xl;
+		}
+	}
+}

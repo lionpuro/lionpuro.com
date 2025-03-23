@@ -11,7 +11,6 @@ import (
 	"github.com/invopop/ctxi18n"
 	_ "github.com/joho/godotenv/autoload"
 	"github.com/lionpuro/portfolio/locales"
-	"github.com/lionpuro/portfolio/views"
 	"golang.org/x/text/language"
 )
 
@@ -22,11 +21,13 @@ func main() {
 	}
 	mux := http.NewServeMux()
 
-	submux := http.NewServeMux()
-	submux.HandleFunc("GET /", indexHandler)
+	pageMux := http.NewServeMux()
+	pageMux.HandleFunc("GET /", indexHandler)
+	pageMux.HandleFunc("GET /blog", blogHandler)
+	pageMux.HandleFunc("GET /blog/{slug}", postHandler)
 
 	mux.Handle("GET /static/", http.StripPrefix("/static", http.FileServer(http.Dir("static"))))
-	mux.HandleFunc("/", languageMiddleware(submux))
+	mux.HandleFunc("/", languageMiddleware(pageMux))
 
 	server := &http.Server{
 		Addr:    fmt.Sprintf(":%s", port),
@@ -35,10 +36,6 @@ func main() {
 
 	fmt.Printf("Listening on port %s\n", port)
 	log.Fatal(server.ListenAndServe())
-}
-
-func indexHandler(w http.ResponseWriter, r *http.Request) {
-	views.FullPage(views.Home(), "Lion Puro", "A full-stack web-developer").Render(r.Context(), w)
 }
 
 func detectLanguage(r *http.Request) string {

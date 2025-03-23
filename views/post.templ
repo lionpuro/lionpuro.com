@@ -1,0 +1,25 @@
+package views
+
+import "time"
+
+templ breadcrumb() {
+	<nav class="flex items-center mb-4">
+		<a
+			href="/"
+			class="py-1 text-base-white hover:text-primary-300 font-semibold w-11.25"
+		>Home</a>
+		@iconChevronRight("text-base-500")
+		<a
+			href="/blog"
+			class="py-1 text-base-white hover:text-primary-300 font-semibold"
+		>Blog</a>
+	</nav>
+}
+
+templ Post(title string, date time.Time, content templ.Component) {
+	@breadcrumb()
+	<div class="blog-post flex flex-col">
+		<span class="text-base-400 font-medium mb-1">{ dateString(date) }</span>
+		@content
+	</div>
+}
