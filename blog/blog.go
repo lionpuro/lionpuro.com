@@ -2,12 +2,10 @@ package blog
 
 import (
 	"bytes"
-	"cmp"
 	"fmt"
 	"os"
 	"path"
-	"slices"
-	"strconv"
+	"sort"
 	"time"
 
 	"github.com/yuin/goldmark"
@@ -20,7 +18,6 @@ type PostMetadata struct {
 	Title   string
 	Summary string
 	Date    time.Time
-	Order   int
 }
 
 type Post struct {
@@ -70,10 +67,9 @@ func ListPosts() ([]PostMetadata, error) {
 		posts = append(posts, metadata)
 	}
 
-	slices.SortFunc(posts, func(a, b PostMetadata) int {
-		return cmp.Compare(a.Order, b.Order)
+	sort.SliceStable(posts, func(i, j int) bool {
+		return posts[i].Date.After(posts[j].Date)
 	})
-	slices.Reverse(posts)
 
 	return posts, nil
 }
@@ -117,7 +113,6 @@ func parseMetadata(ctx parser.Context) (PostMetadata, error) {
 	title := ""
 	summary := ""
 	date := ""
-	order := 999
 
 	if sl, ok := metadata["Slug"].(string); ok {
 		slug = sl
@@ -130,11 +125,6 @@ func parseMetadata(ctx parser.Context) (PostMetadata, error) {
 	}
 	if d, ok := metadata["Date"].(string); ok {
 		date = d
-	}
-	if o, ok := metadata["Order"].(string); ok {
-		if i, err := strconv.Atoi(o); err == nil {
-			order = i
-		}
 	}
 
 	if title == "" || summary == "" || date == "" || slug == "" {
@@ -151,7 +141,6 @@ func parseMetadata(ctx parser.Context) (PostMetadata, error) {
 		Title:   title,
 		Summary: summary,
 		Date:    d,
-		Order:   order,
 	}
 	return m, nil
 }

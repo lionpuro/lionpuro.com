@@ -3,7 +3,6 @@ Slug: first-post
 Title: First post
 Summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Date: 2025-03-22
-Order: 1
 ---
 
 # First post
