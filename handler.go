@@ -11,7 +11,7 @@ import (
 )
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	views.FullPage(views.Home(), "Lion Puro", "A full-stack web-developer").Render(r.Context(), w)
+	views.FullPage(views.Home(), "Lion Puro", "A full stack web developer").Render(r.Context(), w)
 }
 
 func blogHandler(w http.ResponseWriter, r *http.Request) {
@@ -20,7 +20,7 @@ func blogHandler(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/", http.StatusInternalServerError)
 		return
 	}
-	views.FullPage(views.Blog(posts), "Blog - Lion Puro", "A full-stack web-developer").Render(r.Context(), w)
+	views.FullPage(views.Blog(posts), "Blog - Lion Puro", "A full stack web developer").Render(r.Context(), w)
 }
 
 func postHandler(w http.ResponseWriter, r *http.Request) {
