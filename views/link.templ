@@ -1,0 +1,18 @@
+package views
+
+import (
+	"context"
+	"path"
+)
+
+func localizedURL(ctx context.Context, url string) templ.SafeURL {
+	base := ctx.Value("urlBase").(string)
+	u := path.Join(base, url)
+	return templ.URL(u)
+}
+
+templ localizedLink(href, class string) {
+	<a href={ localizedURL(ctx, href) } class={ class }>
+		{ children... }
+	</a>
+}

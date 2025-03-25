@@ -4,15 +4,13 @@ import "time"
 
 templ breadcrumb() {
 	<nav class="flex items-center mb-4">
-		<a
-			href="/"
-			class="py-1 text-base-white hover:text-primary-300 font-semibold w-11.25"
-		>Home</a>
+		@localizedLink("/", "py-1 text-base-white hover:text-primary-300 font-semibold w-11.25") {
+			Home
+		}
 		@iconChevronRight("text-base-500")
-		<a
-			href="/blog"
-			class="py-1 text-base-white hover:text-primary-300 font-semibold"
-		>Blog</a>
+		@localizedLink("/blog", "py-1 text-base-white hover:text-primary-300 font-semibold w-11.25") {
+			Blog
+		}
 	</nav>
 }
 

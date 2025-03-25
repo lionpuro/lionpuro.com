@@ -16,13 +16,13 @@ templ Blog(posts []blog.PostMetadata) {
 		<div class="flex flex-col gap-4">
 			for _, post := range posts {
 				<article class="py-4 border-t border-base-900">
-					<a href={ templ.URL(fmt.Sprintf("/blog/%s", post.Slug)) } class="flex flex-col gap-2 hover:[&>h2]:underline">
+					@localizedLink(fmt.Sprintf("/blog/%s", post.Slug), "flex flex-col gap-2 hover:[&>h2]:underline") {
 						<span class="text-base-500 text-sm font-medium">{ dateString(post.Date) }</span>
 						<h2 class="text-xl font-semibold underline-offset-2">
 							{ post.Title }
 						</h2>
 						<div class="text-base-300 font-medium">{ post.Summary }</div>
-					</a>
+					}
 				</article>
 			}
 		</div>

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"net/http"
@@ -59,6 +60,7 @@ func languageMiddleware(next http.Handler) http.HandlerFunc {
 		pathSegments := strings.Split(r.URL.Path, "/")
 		langParam := pathSegments[1]
 		lang := detectLanguage(r)
+		urlBase := "/"
 
 		if lang == "fi" && langParam == "" {
 			url := path.Join("/", "fi")
@@ -68,9 +70,11 @@ func languageMiddleware(next http.Handler) http.HandlerFunc {
 
 		if langParam == "fi" || langParam == "en" {
 			lang = langParam
+			urlBase = "/" + langParam
 		}
 
-		ctx, err := ctxi18n.WithLocale(r.Context(), lang)
+		i18nCtx, err := ctxi18n.WithLocale(r.Context(), lang)
+		ctx := context.WithValue(i18nCtx, "urlBase", urlBase)
 		if err != nil {
 			log.Printf("error setting locale: %v", err)
 			http.Error(w, "error setting locale", http.StatusBadRequest)
