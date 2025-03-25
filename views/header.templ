@@ -20,10 +20,10 @@ templ Header(localeCode string) {
 			}
 			<nav class="ml-auto flex items-center gap-2">
 				@localizedLink("/", "p-2 text-base-100 font-semibold") {
-					Home
+					@t("nav.home")
 				}
 				@localizedLink("/blog", "p-2 text-base-100 font-semibold") {
-					Blog
+					@t("nav.blog")
 				}
 			</nav>
 			if localeCode == "fi" {

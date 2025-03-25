@@ -11,3 +11,6 @@ fi:
     mug-editor:
       title: "Mukieditori"
       description: "Mukieditori Mikko Kankainen Oy:n verkkokauppaan. Sen avulla asiakas voi suunnitella haluamansa näköisen mukin lisäämällä kuvia ja tekstiä ja nähdä 3D-mallin mukista."
+  nav:
+    home: "Koti"
+    blog: "Blogi"

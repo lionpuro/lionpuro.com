@@ -11,3 +11,6 @@ en:
     mug-editor:
       title: "Mug editor"
       description: "A mug designing tool I built from the ground up for Mikko Kankainen OY. It allows customers to customize printable mugs to their liking with images and text and view a 3D-visualization of it."
+  nav:
+    home: "Home"
+    blog: "Blog"
