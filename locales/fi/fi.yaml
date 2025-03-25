@@ -14,3 +14,5 @@ fi:
   nav:
     home: "Koti"
     blog: "Blogi"
+  not-found: "Sivua ei löytynyt"
+  back-home: "Palaa etusivulle"
