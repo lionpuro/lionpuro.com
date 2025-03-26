@@ -90,7 +90,7 @@ body {
 			@apply text-base-200 mb-4 max-w-2xl;
 		}
 		pre {
-			@apply mb-4 p-4 bg-base-900 rounded-md;
+			@apply mb-4 p-4 bg-base-900 rounded-md overflow-x-auto;
 		}
 		code {
 			font-family: monospace;
