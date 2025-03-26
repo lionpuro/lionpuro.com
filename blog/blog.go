@@ -37,7 +37,7 @@ func parseDate(d string) (time.Time, error) {
 }
 
 func ListPosts() ([]PostMetadata, error) {
-	dir := "./posts"
+	dir := "./content/posts"
 	markdown := goldmark.New(
 		goldmark.WithExtensions(meta.Meta),
 	)
@@ -76,7 +76,8 @@ func ListPosts() ([]PostMetadata, error) {
 }
 
 func ParsePost(slug string) (*Post, error) {
-	content, err := os.ReadFile(fmt.Sprintf("./posts/%s.md", slug))
+	dir := fmt.Sprintf("./content/posts/%s.md", slug)
+	content, err := os.ReadFile(dir)
 	if err != nil {
 		return nil, fmt.Errorf("error reading markdown file %v", err)
 	}
