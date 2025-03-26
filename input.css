@@ -94,7 +94,7 @@ body {
 		}
 		code {
 			font-family: monospace;
-			@apply text-base;
+			@apply text-base-50 text-sm sm:text-base;
 		}
 	}
 }
