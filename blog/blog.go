@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/yuin/goldmark"
+	"github.com/yuin/goldmark-highlighting/v2"
 	"github.com/yuin/goldmark-meta"
 	"github.com/yuin/goldmark/parser"
 )
@@ -81,7 +82,11 @@ func ParsePost(slug string) (*Post, error) {
 	}
 
 	markdown := goldmark.New(
-		goldmark.WithExtensions(meta.Meta),
+		goldmark.WithExtensions(meta.Meta,
+			highlighting.NewHighlighting(
+				highlighting.WithCustomStyle(customTheme()),
+			),
+		),
 	)
 
 	ctx := parser.NewContext()
