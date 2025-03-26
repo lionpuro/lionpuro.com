@@ -1,7 +1,19 @@
 package views
 
-import "github.com/invopop/ctxi18n/i18n"
+import (
+	"context"
+	"github.com/invopop/ctxi18n/i18n"
+	"log"
+)
+
+func translateString(ctx context.Context, key string, args ...any) string {
+	if !i18n.Has(ctx, key) {
+		log.Printf("missing key \"%s\" for locale %s", key, i18n.GetLocale(ctx).Code())
+		return ""
+	}
+	return i18n.T(ctx, key, args...)
+}
 
 templ t(key string, args ...any) {
-	{ i18n.T(ctx, key, args...) }
+	{ translateString(ctx, key, args...) }
 }
