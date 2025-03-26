@@ -13,7 +13,7 @@ type projectData struct {
 templ projects(projects []projectData) {
 	<div class="flex flex-col gap-8">
 		for _, p := range projects {
-			<div class="flex flex-col md:flex-row-reverse md:gap-8 pb-8 border-b border-base-900">
+			<div class="flex flex-col md:flex-row-reverse md:gap-8">
 				<img src={ p.image } alt="" loading="lazy" class="shrink-0 grow rounded-md max-md:rounded-b-none aspect-video md:w-[calc(50%)]"/>
 				<div class="grow flex flex-col gap-3 max-md:p-6">
 					<div class="flex items-center gap-2">
