@@ -1,4 +1,11 @@
 en:
+  meta:
+    home:
+      title: "Lion Puro"
+      description: "A full stack web developer"
+    blog:
+      title: "Blog - Lion Puro"
+      description: "A full stack web developer"
   intro:
     hello-i-am: "Hi, I'm"
     enthusiastic: "an enthusiastic "

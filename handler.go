@@ -17,7 +17,13 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		notFoundHandler(w, r)
 		return
 	}
-	views.FullPage(views.Home(), "Lion Puro", "A full stack web developer").Render(r.Context(), w)
+	title := i18n.T(r.Context(), "meta.home.title")
+	desc := i18n.T(r.Context(), "meta.home.description")
+	component := views.FullPage(views.Home(false), title, desc)
+	if isHX(r) {
+		component = views.Home(true)
+	}
+	component.Render(r.Context(), w)
 }
 
 func blogHandler(w http.ResponseWriter, r *http.Request) {
@@ -26,7 +32,13 @@ func blogHandler(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/", http.StatusInternalServerError)
 		return
 	}
-	views.FullPage(views.Blog(posts), "Blog - Lion Puro", "A full stack web developer").Render(r.Context(), w)
+	title := i18n.T(r.Context(), "meta.blog.title")
+	desc := i18n.T(r.Context(), "meta.blog.description")
+	component := views.FullPage(views.Blog(false, posts), title, desc)
+	if isHX(r) {
+		component = views.Blog(true, posts)
+	}
+	component.Render(r.Context(), w)
 }
 
 func postHandler(w http.ResponseWriter, r *http.Request) {
@@ -37,7 +49,15 @@ func postHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	content := unsafe(post.Content)
-	views.FullPage(views.Post(post.Title, post.Date, content), "Lion Puro", "Blog").Render(r.Context(), w)
+	component := views.FullPage(
+		views.Post(false, post.Title, post.Date, content),
+		post.Title,
+		post.Summary,
+	)
+	if isHX(r) {
+		component = views.Post(true, post.Title, post.Date, content)
+	}
+	component.Render(r.Context(), w)
 }
 
 func notFoundHandler(w http.ResponseWriter, r *http.Request) {

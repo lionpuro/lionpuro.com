@@ -14,7 +14,12 @@ templ langLink(href, title string, icon templ.Component) {
 
 templ Header(localeCode string) {
 	<header class="flex items-center bg-base-950 py-2">
-		<div class="max-w-4xl mx-auto w-full flex items-center px-6 sm:px-8 gap-4">
+		<div
+			hx-boost="true"
+			hx-target="#content"
+			hx-swap="innerHTML show:none"
+			class="max-w-4xl mx-auto w-full flex items-center px-6 sm:px-8 gap-4"
+		>
 			@localizedLink("/", "font-semibold py-3") {
 				lionpuro.com
 			}
@@ -26,11 +31,13 @@ templ Header(localeCode string) {
 					@t("nav.blog")
 				}
 			</nav>
-			if localeCode == "fi" {
-				@langLink("/en", "en", iconGreatBritain())
-			} else {
-				@langLink("/fi", "fi", iconFinland())
-			}
+			<div class="flex" hx-boost="false">
+				if localeCode == "fi" {
+					@langLink("/en", "en", iconGreatBritain())
+				} else {
+					@langLink("/fi", "fi", iconFinland())
+				}
+			</div>
 		</div>
 	</header>
 }

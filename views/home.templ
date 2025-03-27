@@ -1,6 +1,11 @@
 package views
 
-templ Home() {
+templ Home(isHX bool) {
+	if isHX {
+		<title>
+			@t("meta.home.title")
+		</title>
+	}
 	<div class="min-h-[calc(100vh-6rem)] flex flex-col justify-center">
 		<div class="flex max-w-xl flex-col gap-2">
 			<div class="flex flex-col">

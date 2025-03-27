@@ -8,15 +8,20 @@ templ Base(title, description string) {
 		<head>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1"/>
-			@metaDescription(description)
+			if description != "" {
+				<meta name="description" content={ description }/>
+			}
 			<link rel="stylesheet" href="/static/global.css"/>
 			<link rel="icon" href="/static/favicon.ico"/>
-			<title>{ title }</title>
+			if title != "" {
+				<title>{ title }</title>
+			}
+			<script src="/static/scripts/htmx.min.js" defer></script>
 		</head>
 		<body>
 			<div id="root" class="flex flex-col min-h-full w-full max-w-3xl mx-auto">
 				@Header(locales.LocaleCode(ctx))
-				<main class="flex flex-col p-6 sm:p-8 grow">
+				<main id="content" class="flex flex-col p-6 sm:p-8 grow">
 					{ children... }
 				</main>
 				@Footer()
@@ -29,11 +34,5 @@ templ Base(title, description string) {
 templ FullPage(component templ.Component, title, description string) {
 	@Base(title, description) {
 		@component
-	}
-}
-
-templ metaDescription(desc string) {
-	if desc != "" {
-		<meta name="description" content={ desc }/>
 	}
 }

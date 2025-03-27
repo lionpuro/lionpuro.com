@@ -14,8 +14,10 @@ templ breadcrumb() {
 	</nav>
 }
 
-templ Post(title string, date time.Time, content templ.Component) {
-	@breadcrumb()
+templ Post(isHX bool, title string, date time.Time, content templ.Component) {
+	if isHX {
+		<title>{ title }</title>
+	}
 	<div class="blog-post flex flex-col">
 		<span class="text-base-400 font-medium mb-1">{ dateString(date) }</span>
 		@content

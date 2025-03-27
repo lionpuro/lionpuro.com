@@ -1,4 +1,11 @@
 fi:
+  meta:
+    home:
+      title: "Lion Puro"
+      description: "Full stack kehittäjä"
+    blog:
+      title: "Blogi - Lion Puro"
+      description: "Full stack kehittäjä"
   intro:
     hello-i-am: "Hei, olen"
     enthusiastic: "motivoitunut "

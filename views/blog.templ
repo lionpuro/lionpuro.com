@@ -10,19 +10,30 @@ func dateString(t time.Time) string {
 	return t.Format("January _2, 2006")
 }
 
-templ Blog(posts []blog.PostMetadata) {
+templ Blog(isHX bool, posts []blog.PostMetadata) {
+	if isHX {
+		<title>
+			@t("meta.blog.title")
+		</title>
+	}
 	<div class="flex flex-col gap-4">
 		<h1 class="text-3xl sm:text-4xl font-bold">Blog</h1>
 		<div class="flex flex-col gap-4">
 			for _, post := range posts {
 				<article class="py-4 border-t border-base-900">
-					@localizedLink(fmt.Sprintf("/blog/%s", post.Slug), "flex flex-col gap-2 hover:[&>h2]:underline") {
+					<a
+						href={ localizedURL(ctx, fmt.Sprintf("/blog/%s", post.Slug)) }
+						hx-boost="true"
+						hx-target="#content"
+						hx-swap="innerHTML show:none"
+						class="flex flex-col gap-2 hover:[&>h2]:underline"
+					>
 						<span class="text-base-500 text-sm font-medium">{ dateString(post.Date) }</span>
 						<h2 class="text-xl font-semibold underline-offset-2">
 							{ post.Title }
 						</h2>
 						<div class="text-base-300 font-medium">{ post.Summary }</div>
-					}
+					</a>
 				</article>
 			}
 		</div>
