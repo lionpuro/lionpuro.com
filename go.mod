@@ -1,4 +1,4 @@
-module github.com/lionpuro/portfolio
+module github.com/lionpuro/lionpuro.com
 
 go 1.24.1
 

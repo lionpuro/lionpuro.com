@@ -7,8 +7,8 @@ import (
 
 	"github.com/a-h/templ"
 	"github.com/invopop/ctxi18n/i18n"
-	"github.com/lionpuro/portfolio/blog"
-	"github.com/lionpuro/portfolio/views"
+	"github.com/lionpuro/lionpuro.com/blog"
+	"github.com/lionpuro/lionpuro.com/views"
 )
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {

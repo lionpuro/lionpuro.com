@@ -24,7 +24,7 @@ RUN npx @tailwindcss/cli -i ./input.css -o ./output.css --minify
 FROM golang:${GO_VERSION} AS build-stage
 COPY --from=generate-stage /app /app
 WORKDIR /app
-RUN CGO_ENABLED=0 GOOS=linux go build -v -o /app/portfolio
+RUN CGO_ENABLED=0 GOOS=linux go build -v -o /app/server
 
 # release
 FROM debian:bookworm-slim AS release
@@ -32,4 +32,4 @@ COPY --from=build-stage /app /app
 COPY --from=npm-stage /app/output.css /app/static/global.css
 WORKDIR /app
 
-CMD [ "/app/portfolio" ]
+CMD [ "/app/server" ]

@@ -11,7 +11,7 @@ import (
 
 	"github.com/invopop/ctxi18n"
 	_ "github.com/joho/godotenv/autoload"
-	"github.com/lionpuro/portfolio/locales"
+	"github.com/lionpuro/lionpuro.com/locales"
 	"golang.org/x/text/language"
 )
 
