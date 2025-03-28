@@ -12,11 +12,18 @@ templ Blog(isHX bool, posts []blog.PostMetadata) {
 			@t("meta.blog.title")
 		</title>
 	}
-	<div class="flex flex-col gap-4">
-		<h1 class="text-3xl sm:text-4xl font-bold">Blog</h1>
-		<div class="flex flex-col gap-4">
+	<div class="flex flex-col">
+		<div class="flex flex-col border-b border-base-900 gap-4 pb-4">
+			<h1 class="text-3xl sm:text-4xl font-bold">
+				@t("blog.heading")
+			</h1>
+			<p class="text-base-300 font-medium">
+				@t("blog.description")
+			</p>
+		</div>
+		<div class="flex flex-col">
 			for _, post := range posts {
-				<article class="py-4 border-t border-base-900">
+				<article class="py-4">
 					<a
 						href={ localizedURL(ctx, fmt.Sprintf("/blog/%s", post.Slug)) }
 						hx-boost="true"
