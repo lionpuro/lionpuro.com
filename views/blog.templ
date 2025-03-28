@@ -3,12 +3,8 @@ package views
 import (
 	"fmt"
 	"github.com/lionpuro/portfolio/blog"
-	"time"
+	"github.com/lionpuro/portfolio/locales"
 )
-
-func dateString(t time.Time) string {
-	return t.Format("January _2, 2006")
-}
 
 templ Blog(isHX bool, posts []blog.PostMetadata) {
 	if isHX {
@@ -28,7 +24,7 @@ templ Blog(isHX bool, posts []blog.PostMetadata) {
 						hx-swap="innerHTML show:none"
 						class="flex flex-col gap-2 hover:[&>h2]:underline"
 					>
-						<span class="text-base-500 text-sm font-medium">{ dateString(post.Date) }</span>
+						<span class="text-base-500 text-sm font-medium">{ locales.DateString(ctx, post.Date) }</span>
 						<h2 class="text-xl font-semibold underline-offset-2">
 							{ post.Title }
 						</h2>

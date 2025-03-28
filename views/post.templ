@@ -1,6 +1,7 @@
 package views
 
 import "time"
+import "github.com/lionpuro/portfolio/locales"
 
 templ breadcrumb() {
 	<nav class="flex items-center mb-4">
@@ -19,7 +20,7 @@ templ Post(isHX bool, title string, date time.Time, content templ.Component) {
 		<title>{ title }</title>
 	}
 	<div class="blog-post flex flex-col">
-		<span class="text-base-400 font-medium mb-1">{ dateString(date) }</span>
+		<span class="text-base-400 font-medium mb-1">{ locales.DateString(ctx, date) }</span>
 		@content
 	</div>
 }
