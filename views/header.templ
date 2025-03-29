@@ -20,15 +20,15 @@ templ Header(localeCode string) {
 			hx-swap="innerHTML show:none"
 			class="max-w-4xl mx-auto w-full flex items-center px-6 sm:px-8 gap-4"
 		>
-			@localizedLink("/", "font-semibold py-3") {
-				lionpuro.com
+			@localizedLink("/", "text-xl font-semibold py-2.5") {
+				Lion Puro
 			}
 			<nav class="ml-auto flex items-center gap-2">
-				@localizedLink("/", "p-2 text-base-100 font-semibold") {
-					@t("nav.home")
+				@localizedLink("/projects", "p-2 text-base-100 font-semibold") {
+					@t("Projects")
 				}
 				@localizedLink("/blog", "p-2 text-base-100 font-semibold") {
-					@t("nav.blog")
+					@t("Blog")
 				}
 			</nav>
 			<div class="flex" hx-boost="false">

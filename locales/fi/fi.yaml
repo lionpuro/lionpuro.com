@@ -6,6 +6,9 @@ fi:
     blog:
       title: "Blogi - Lion Puro"
       description: "Tänne dokumentoin oppimaani ja ratkaisujani kiinnostaviin ongelmiin."
+    projects:
+      title: "Projektit - Lion Puro"
+      description: "Full stack kehittäjä"
   intro:
     hello-i-am: "Hei, olen"
     enthusiastic: "motivoitunut "
@@ -14,15 +17,13 @@ fi:
     here: "Täältä"
     you-can-find: " löydät joitain kehittämiäni ratkaisuja erilaisiin ongelmiin. "
   projects:
-    heading: "Projektit"
     mug-editor:
       title: "Mukieditori"
       description: "Mukieditori Mikko Kankainen Oy:n verkkokauppaan. Sen avulla asiakas voi suunnitella haluamansa näköisen mukin lisäämällä kuvia ja tekstiä ja nähdä 3D-mallin mukista."
   blog:
-    heading: "Blogi"
     description: "Tänne dokumentoin oppimaani ja ratkaisujani kiinnostaviin ongelmiin."
-  nav:
-    home: "Koti"
-    blog: "Blogi"
   not-found: "Sivua ei löytynyt"
   back-home: "Palaa etusivulle"
+  Home: "Koti"
+  Blog: "Blogi"
+  Projects: "Projektit"

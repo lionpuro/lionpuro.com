@@ -6,7 +6,7 @@ templ Home(isHX bool) {
 			@t("meta.home.title")
 		</title>
 	}
-	<div class="min-h-[calc(100vh-6rem)] flex flex-col justify-center">
+	<div class="my-auto flex flex-col justify-center">
 		<div class="flex max-w-xl flex-col gap-2">
 			<div class="flex flex-col">
 				<p class="text-lg sm:text-xl font-medium px-0.5">
@@ -20,7 +20,13 @@ templ Home(isHX bool) {
 					@t("intro.full-stack-developer")
 				</strong>
 				@t("intro.my-passion")
-				<a id="link-projects" href="#projects" class="text-primary-400 underline underline-offset-2">
+				<a
+					hx-boost="true"
+					hx-target="#content"
+					hx-swap="innerHTML show:none"
+					href={ localizedURL(ctx, "/projects") }
+					class="text-primary-400 underline underline-offset-2"
+				>
 					@t("intro.here")
 				</a>
 				@t("intro.you-can-find")
@@ -56,18 +62,4 @@ templ Home(isHX bool) {
 			</div>
 		</div>
 	</div>
-	@section("projects") {
-		@sectionHeading() {
-			@t("projects.heading")
-		}
-		@projects([]projectData{
-			{
-				id:    "mug-editor",
-				image: "/static/images/mug-editor-demo.png",
-				url:   "https://kankainen.org/mukieditori",
-				repo:  "",
-				tags:  []string{"Frontend", "TypeScript", "React"},
-			},
-		})
-	}
 }

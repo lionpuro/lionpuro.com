@@ -14,9 +14,9 @@ templ Blog(isHX bool, posts []blog.PostMetadata) {
 	}
 	<div class="flex flex-col">
 		<div class="flex flex-col border-b border-base-900 gap-4 pb-4">
-			<h1 class="text-3xl sm:text-4xl font-bold">
-				@t("blog.heading")
-			</h1>
+			@mainHeading() {
+				@t("Blog")
+			}
 			<p class="text-base-300 font-medium">
 				@t("blog.description")
 			</p>

@@ -6,6 +6,9 @@ en:
     blog:
       title: "Blog - Lion Puro"
       description: "Here I document my journey and solutions to interesting problems."
+    projects:
+      title: "Projects - Lion Puro"
+      description: "A full stack web developer"
   intro:
     hello-i-am: "Hi, I'm"
     enthusiastic: "an enthusiastic "
@@ -14,15 +17,13 @@ en:
     here: "Here"
     you-can-find: " you can find some of the things I've developed to solve different problems. "
   projects:
-    heading: "Projects"
     mug-editor:
       title: "Mug editor"
       description: "A mug designing tool I built from the ground up for Mikko Kankainen OY. It allows customers to customize printable mugs to their liking with images and text and view a 3D-visualization of it."
   blog:
-    heading: "Blog"
     description: "Here I document my journey and solutions to interesting problems."
-  nav:
-    home: "Home"
-    blog: "Blog"
   not-found: "Page not found"
   back-home: "Back to home"
+  Home: "Home"
+  Blog: "Blog"
+  Projects: "Projects"

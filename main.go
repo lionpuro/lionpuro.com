@@ -26,6 +26,7 @@ func main() {
 
 	routes := map[string]http.HandlerFunc{
 		"GET /":            indexHandler,
+		"GET /projects":    projectsHandler,
 		"GET /blog":        blogHandler,
 		"GET /blog/{slug}": postHandler,
 	}

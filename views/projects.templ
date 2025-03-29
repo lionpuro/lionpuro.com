@@ -10,51 +10,73 @@ type projectData struct {
 	tags  []string
 }
 
-templ projects(projects []projectData) {
-	<div class="flex flex-col gap-8">
-		for _, p := range projects {
-			<div class="flex flex-col md:flex-row-reverse md:gap-8">
-				<img src={ p.image } alt="" loading="lazy" class="shrink-0 grow rounded-md max-md:rounded-b-none aspect-video md:w-[calc(50%)]"/>
-				<div class="grow flex flex-col gap-3 max-md:p-6">
-					<div class="flex items-center gap-2">
-						<h3 class="text-xl sm:text-2xl font-bold">
-							@t(fmt.Sprintf("projects.%s.title", p.id))
-						</h3>
-						<span class="ml-auto flex gap-2">
-							if p.repo != "" {
-								<a
-									href={ templ.URL(p.repo) }
-									target="_blank"
-									rel="noreferrer"
-									class="text-base-400 hover:text-base-50"
-								>
-									@iconGithub()
-								</a>
+var projects = []projectData{
+	{
+		id:    "mug-editor",
+		image: "/static/images/mug-editor-demo.png",
+		url:   "https://kankainen.org/mukieditori",
+		repo:  "",
+		tags:  []string{"Frontend", "TypeScript", "React"},
+	},
+}
+
+templ Projects(isHX bool) {
+	if isHX {
+		<title>
+			@t("meta.projects.title")
+		</title>
+	}
+	<div class="flex flex-col">
+		<div class="flex flex-col border-b border-base-900 gap-4 pb-4">
+			@mainHeading() {
+				@t("Projects")
+			}
+		</div>
+		<div class="flex flex-col">
+			for _, p := range projects {
+				<div class="flex flex-col md:flex-row-reverse gap-4 md:gap-8 my-4">
+					<img src={ p.image } alt="" loading="lazy" class="shrink-0 grow rounded-md aspect-video md:w-[calc(50%)]"/>
+					<div class="grow flex flex-col gap-3">
+						<div class="flex items-center gap-2">
+							<h3 class="text-xl sm:text-2xl font-bold">
+								@t(fmt.Sprintf("projects.%s.title", p.id))
+							</h3>
+							<span class="ml-auto flex gap-2">
+								if p.repo != "" {
+									<a
+										href={ templ.URL(p.repo) }
+										target="_blank"
+										rel="noreferrer"
+										class="text-base-400 hover:text-base-50"
+									>
+										@iconGithub()
+									</a>
+								}
+								if p.url != "" {
+									<a
+										href={ templ.URL(p.url) }
+										target="_blank"
+										rel="noreferrer"
+										class="text-base-400 hover:text-base-50"
+									>
+										@iconLink()
+									</a>
+								}
+							</span>
+						</div>
+						<p class="font-medium text-base-300">
+							@t(fmt.Sprintf("projects.%s.description", p.id))
+						</p>
+						<div class="flex gap-2">
+							for _, t := range p.tags {
+								<div class={ "rounded-md bg-base-900 p-1 px-2 text-sm font-semibold", templ.KV("text-primary-400", t == "Frontend" || t == "Full-stack") }>
+									{ t }
+								</div>
 							}
-							if p.url != "" {
-								<a
-									href={ templ.URL(p.url) }
-									target="_blank"
-									rel="noreferrer"
-									class="text-base-400 hover:text-base-50"
-								>
-									@iconLink()
-								</a>
-							}
-						</span>
-					</div>
-					<p class="font-medium text-base-300">
-						@t(fmt.Sprintf("projects.%s.description", p.id))
-					</p>
-					<div class="flex gap-2">
-						for _, t := range p.tags {
-							<div class={ "rounded-md bg-base-900 p-1 px-2 text-sm font-semibold", templ.KV("text-primary-400", t == "Frontend" || t == "Full-stack") }>
-								{ t }
-							</div>
-						}
+						</div>
 					</div>
 				</div>
-			</div>
-		}
+			}
+		</div>
 	</div>
 }

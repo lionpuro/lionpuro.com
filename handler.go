@@ -26,6 +26,16 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	component.Render(r.Context(), w)
 }
 
+func projectsHandler(w http.ResponseWriter, r *http.Request) {
+	title := i18n.T(r.Context(), "meta.projects.title")
+	desc := i18n.T(r.Context(), "meta.projects.description")
+	component := views.FullPage(views.Projects(false), title, desc)
+	if isHX(r) {
+		component = views.Projects(true)
+	}
+	component.Render(r.Context(), w)
+}
+
 func blogHandler(w http.ResponseWriter, r *http.Request) {
 	posts, err := blog.ListPosts()
 	if err != nil {
