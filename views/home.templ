@@ -7,29 +7,21 @@ templ Home(isHX bool) {
 		</title>
 	}
 	<div class="my-auto flex flex-col justify-center">
-		<div class="flex max-w-xl flex-col gap-2">
-			<div class="flex flex-col">
+		<div class="flex max-w-xl flex-col">
+			<div class="flex flex-col mb-3">
 				<p class="text-lg sm:text-xl font-medium px-0.5">
 					@t("intro.hello-i-am")
 				</p>
 				<h1 class="text-4xl sm:text-5xl font-bold">Lion Puro </h1>
 			</div>
-			<p class="p-1 font-medium text-base-300">
-				@t("intro.enthusiastic")
+			<p class="px-1 font-medium text-base-300">
 				<strong>
 					@t("intro.full-stack-developer")
 				</strong>
-				@t("intro.my-passion")
-				<a
-					hx-boost="true"
-					hx-target="#content"
-					hx-swap="innerHTML show:none"
-					href={ localizedURL(ctx, "/projects") }
-					class="text-primary-400 underline underline-offset-2"
-				>
-					@t("intro.here")
-				</a>
-				@t("intro.you-can-find")
+				@t("intro.and-problem-solver")
+			</p>
+			<p class="px-1 font-medium text-base-300 mb-2">
+				@t("intro.here-i-document")
 			</p>
 			<div class="flex">
 				<a

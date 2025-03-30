@@ -11,11 +11,10 @@ fi:
       description: "Full stack kehittäjä"
   intro:
     hello-i-am: "Hei, olen"
-    enthusiastic: "motivoitunut "
-    full-stack-developer: "full-stack-kehittäjä"
-    my-passion: ", jolle ongelmanratkaisu ja web-kehitys on intohimo. "
-    here: "Täältä"
-    you-can-find: " löydät joitain kehittämiäni ratkaisuja erilaisiin ongelmiin. "
+    full-stack-developer: "full-stack-kehittäjä "
+    and-problem-solver: "ja ongelmanratkaisija. "
+    here-i-document: "Tänne dokumentoin matkaani kehittäjänä. "
+    projects: "projekteja"
   projects:
     mug-editor:
       title: "Mukieditori"

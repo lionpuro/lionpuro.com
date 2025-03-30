@@ -11,11 +11,10 @@ en:
       description: "A full stack web developer"
   intro:
     hello-i-am: "Hi, I'm"
-    enthusiastic: "an enthusiastic "
     full-stack-developer: "full stack developer "
-    my-passion: "with a passion for problem solving and web development. "
-    here: "Here"
-    you-can-find: " you can find some of the things I've developed to solve different problems. "
+    and-problem-solver: "and problem solver. "
+    here-i-document: "This is where I document my journey as a developer. "
+    projects: "projects "
   projects:
     mug-editor:
       title: "Mug editor"
