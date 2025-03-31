@@ -38,9 +38,9 @@ templ Projects(isHX bool) {
 					<img src={ p.image } alt="" loading="lazy" class="shrink-0 grow rounded-md aspect-video md:w-[calc(50%)]"/>
 					<div class="grow flex flex-col gap-3">
 						<div class="flex items-center gap-2">
-							<h3 class="text-xl sm:text-2xl font-bold">
+							<h2 class="text-xl font-semibold">
 								@t(fmt.Sprintf("projects.%s.title", p.id))
-							</h3>
+							</h2>
 							<span class="ml-auto flex gap-2">
 								if p.repo != "" {
 									<a
