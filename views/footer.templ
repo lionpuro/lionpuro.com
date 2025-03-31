@@ -19,7 +19,7 @@ templ Footer() {
 				aria-label="github"
 				target="_blank"
 				rel="noopener noreferrer"
-				class="flex items-center gap-2 p-2 font-medium text-base-200 hover:text-base-50"
+				class="flex items-center gap-2 p-2 font-medium text-base-300 hover:text-base-50"
 			>
 				@iconGithub("size-6")
 				<span class="max-sm:hidden">github</span>
@@ -29,10 +29,20 @@ templ Footer() {
 				aria-label="linkedin"
 				target="_blank"
 				rel="noopener noreferrer"
-				class="flex items-center gap-2 p-2 font-medium text-base-200 hover:text-base-50"
+				class="flex items-center gap-2 p-2 font-medium text-base-300 hover:text-base-50"
 			>
 				@iconLinkedin("size-6")
 				<span class="max-sm:hidden">linkedin</span>
+			</a>
+			<a
+				href={ email }
+				aria-label="email"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="flex items-center gap-2 p-2 font-medium text-base-300 hover:text-base-50"
+			>
+				@iconMail("size-6")
+				<span class="max-sm:hidden">email</span>
 			</a>
 		</div>
 	</footer>

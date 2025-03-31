@@ -23,35 +23,6 @@ templ Home(isHX bool) {
 			<p class="px-1 text-base-300 mb-2 sm:text-lg">
 				@t("intro.here-i-document")
 			</p>
-			<div class="flex">
-				<a
-					href={ github_url }
-					aria-label="github"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="flex items-center gap-2 p-2 font-medium text-base-300 hover:text-base-50"
-				>
-					@iconGithub("size-8")
-				</a>
-				<a
-					href={ linkedin_url }
-					aria-label="linkedin"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="flex items-center gap-2 p-2 font-medium text-base-300 hover:text-base-50"
-				>
-					@iconLinkedin("size-8")
-				</a>
-				<a
-					href={ email }
-					aria-label="email"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="flex items-center gap-2 p-2 font-medium text-base-300 hover:text-base-50"
-				>
-					@iconMail("size-8")
-				</a>
-			</div>
 		</div>
 	</div>
 }
