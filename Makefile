@@ -1,17 +1,19 @@
 include .env
 export
 
-docker-build:
-	DOCKER_HOST=$(DOCKER_HOST) docker compose build
-
 docker-stop:
 	DOCKER_HOST=$(DOCKER_HOST) docker compose stop
 
 docker-up:
-	DOCKER_HOST=$(DOCKER_HOST) docker compose up -d
+	export DOCKER_HOST=$(DOCKER_HOST) docker compose pull && docker compose up -d
 
-docker-deploy:
-	export DOCKER_HOST=$(DOCKER_HOST) docker compose build && docker compose up -d --build
+build-image:
+	docker build -t lionpuro/lionpuro.com .
+	docker push lionpuro/lionpuro.com
+
+deploy: build-image
+	export DOCKER_HOST=$(DOCKER_HOST) docker compose pull && docker compose up -d
+
 
 build:
 	@npx @tailwindcss/cli -i ./input.css -o ./static/global.css --minify

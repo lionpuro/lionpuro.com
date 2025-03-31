@@ -4,9 +4,7 @@ networks:
 services:
   server:
     env_file: ".env"
-    build:
-      context: .
-      target: release
+    image: lionpuro/lionpuro.com:latest
     ports:
       - "3000"
     networks:
