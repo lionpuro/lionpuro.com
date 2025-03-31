@@ -5,18 +5,6 @@ import (
 	"time"
 )
 
-templ breadcrumb() {
-	<nav class="flex items-center mb-4">
-		@localizedLink("/", "py-1 text-base-white hover:text-primary-300 font-semibold w-11.25") {
-			Home
-		}
-		@iconChevronRight("text-base-500")
-		@localizedLink("/blog", "py-1 text-base-white hover:text-primary-300 font-semibold w-11.25") {
-			Blog
-		}
-	</nav>
-}
-
 templ Post(isHX bool, title string, date time.Time, content templ.Component) {
 	if isHX {
 		<title>{ title }</title>
