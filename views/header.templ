@@ -3,7 +3,7 @@ package views
 templ langLink(href, title string, icon templ.Component) {
 	<a
 		href={ templ.URL(href) }
-		class="flex items-center gap-2 px-2 py-1.5 font-semibold"
+		class="flex items-center gap-2 px-2 py-1.5 font-medium"
 	>
 		@icon
 		<span class="max-sm:hidden">
@@ -24,10 +24,10 @@ templ Header(localeCode string) {
 				@Logo("")
 			}
 			<div class="ml-auto flex items-center sm:gap-2">
-				@localizedLink("/projects", "p-2 font-semibold") {
+				@localizedLink("/projects", "p-2 font-medium") {
 					@t("Projects")
 				}
-				@localizedLink("/blog", "p-2 font-semibold") {
+				@localizedLink("/blog", "p-2 font-medium") {
 					@t("Blog")
 				}
 			</div>

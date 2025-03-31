@@ -64,12 +64,12 @@ templ Projects(isHX bool) {
 								}
 							</span>
 						</div>
-						<p class="font-medium text-base-300">
+						<p class="text-base-300">
 							@t(fmt.Sprintf("projects.%s.description", p.id))
 						</p>
 						<div class="flex gap-2">
 							for _, t := range p.tags {
-								<div class={ "rounded-md bg-base-900 p-1 px-2 text-sm font-semibold", templ.KV("text-primary-400", t == "Frontend" || t == "Full-stack") }>
+								<div class={ "rounded-md bg-base-900 p-1 px-2 text-sm font-medium", templ.KV("text-primary-400", t == "Frontend" || t == "Full-stack") }>
 									{ t }
 								</div>
 							}

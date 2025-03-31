@@ -9,7 +9,7 @@ templ Post(isHX bool, title string, date time.Time, content templ.Component) {
 	if isHX {
 		<title>{ title }</title>
 	}
-	<div class="blog-post flex flex-col">
+	<div class="blog-post flex flex-col leading-7">
 		<span class="text-base-400 font-medium mb-1">{ locales.DateString(ctx, date) }</span>
 		@content
 	</div>

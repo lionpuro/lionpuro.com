@@ -17,7 +17,7 @@ templ Blog(isHX bool, posts []blog.PostMetadata) {
 			@mainHeading() {
 				@t("Blog")
 			}
-			<p class="text-base-300 font-medium">
+			<p class="text-base-300">
 				@t("blog.description")
 			</p>
 		</div>
@@ -32,10 +32,10 @@ templ Blog(isHX bool, posts []blog.PostMetadata) {
 						class="flex flex-col gap-2 hover:[&>h2]:underline"
 					>
 						<span class="text-base-500 text-sm font-medium">{ locales.DateString(ctx, post.Date) }</span>
-						<h2 class="text-xl font-semibold underline-offset-2">
+						<h2 class="text-xl font-semibold decoration-1 underline-offset-2">
 							{ post.Title }
 						</h2>
-						<div class="text-base-300 font-medium">{ post.Summary }</div>
+						<div class="text-base-300">{ post.Summary }</div>
 					</a>
 				</article>
 			}
