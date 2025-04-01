@@ -35,7 +35,7 @@ func main() {
 	rootRouter.Handle("GET /static/", http.StripPrefix("/static", http.FileServer(http.Dir("static"))))
 
 	rootRouter.HandleFunc("/", removeTrailingSlash(
-		languageMiddleware(pageRouter),
+		commonMiddleware(languageMiddleware(pageRouter)),
 	))
 
 	server := &http.Server{
@@ -121,4 +121,11 @@ func removeTrailingSlash(next http.Handler) http.HandlerFunc {
 		}
 		next.ServeHTTP(w, r)
 	}
+}
+
+func commonMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Add("Content-Type", "text/html")
+		next.ServeHTTP(w, r)
+	})
 }
