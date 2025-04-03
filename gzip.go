@@ -18,7 +18,8 @@ func (w gzipResponseWriter) Write(b []byte) (int, error) {
 
 func gzipHandler(handler http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if !strings.Contains(r.Header.Get("Accept-Encoding"), "gzip") {
+		if !strings.Contains(r.Header.Get("Accept-Encoding"), "gzip") ||
+			strings.HasSuffix(r.URL.Path, ".woff2") {
 			handler.ServeHTTP(w, r)
 			return
 		}
