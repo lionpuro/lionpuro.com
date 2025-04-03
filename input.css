@@ -31,6 +31,8 @@
 	--color-primary-900: #2f3e80;
 	--color-primary-950: #1b234b;
 
+	--color-accent: #fc5d7c;
+
 	--color-base-white: #f6f6f6;
 	--color-base-50: #e8e8e8;
 	--color-base-100: #dbdbdb;
@@ -92,9 +94,26 @@ body {
 		pre {
 			@apply mb-4 p-4 bg-base-900 rounded-md overflow-x-auto;
 		}
-		code {
+		pre > code {
 			font-family: monospace;
 			@apply text-base-50 text-sm sm:text-base;
+		}
+		p > code {
+			@apply text-accent;
+		}
+		em {
+			@apply text-accent;
+		}
+		ul {
+			list-style-type: disc;
+			@apply pl-6 mb-4;
+		}
+		li {
+			display: list-item;
+			@apply text-base-200 pl-2;
+		}
+		li::marker {
+			@apply text-base-600;
 		}
 	}
 }
