@@ -36,4 +36,5 @@ jobs:
           script: |
             cd /srv/lionpuro.com
             git pull
+            docker compose -f ./infra/compose.yaml pull
             docker compose -f ./infra/compose.yaml up --build -d
