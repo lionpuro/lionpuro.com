@@ -3,8 +3,10 @@ networks:
   caddy:
 services:
   server:
-    env_file: ".env"
+    environment:
+      PORT: "3000"
     image: lionpuro/lionpuro.com:latest
+    restart: unless-stopped
     ports:
       - "3000"
     networks:
