@@ -39,7 +39,9 @@ func projectsHandler(w http.ResponseWriter, r *http.Request) {
 func blogHandler(w http.ResponseWriter, r *http.Request) {
 	posts, err := blog.ListPosts()
 	if err != nil {
-		http.Redirect(w, r, "/", http.StatusInternalServerError)
+		views.FullPage(
+			views.ErrorPage(http.StatusInternalServerError, "Internal server error"), "Lion Puro", "",
+		).Render(r.Context(), w)
 		return
 	}
 	title := i18n.T(r.Context(), "meta.blog.title")
