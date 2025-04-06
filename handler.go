@@ -39,9 +39,11 @@ func projectsHandler(w http.ResponseWriter, r *http.Request) {
 func blogHandler(w http.ResponseWriter, r *http.Request) {
 	posts, err := blog.ListPosts()
 	if err != nil {
-		views.FullPage(
-			views.ErrorPage(http.StatusInternalServerError, "Internal server error"), "Lion Puro", "",
-		).Render(r.Context(), w)
+		component := views.ErrorPage(http.StatusInternalServerError, "Internal server error")
+		if !isHX(r) {
+			component = views.FullPage(component, "Lion Puro", "")
+		}
+		component.Render(r.Context(), w)
 		return
 	}
 	title := i18n.T(r.Context(), "meta.blog.title")
@@ -75,9 +77,11 @@ func postHandler(w http.ResponseWriter, r *http.Request) {
 func notFoundHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotFound)
 	msg := i18n.T(r.Context(), "not-found")
-	views.FullPage(
-		views.ErrorPage(http.StatusNotFound, msg), msg, "",
-	).Render(r.Context(), w)
+	component := views.ErrorPage(http.StatusNotFound, msg)
+	if !isHX(r) {
+		component = views.FullPage(component, msg, "")
+	}
+	component.Render(r.Context(), w)
 }
 
 func unsafe(html string) templ.Component {
