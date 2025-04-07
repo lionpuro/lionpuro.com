@@ -12,6 +12,7 @@ import (
 	"github.com/yuin/goldmark-highlighting/v2"
 	"github.com/yuin/goldmark-meta"
 	"github.com/yuin/goldmark/parser"
+	"github.com/yuin/goldmark/renderer/html"
 )
 
 type PostMetadata struct {
@@ -88,6 +89,7 @@ func ParsePost(slug string) (*Post, error) {
 				highlighting.WithCustomStyle(customTheme()),
 			),
 		),
+		goldmark.WithRendererOptions(html.WithUnsafe()),
 	)
 
 	ctx := parser.NewContext()
