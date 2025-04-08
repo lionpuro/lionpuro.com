@@ -11,6 +11,7 @@ import (
 
 	"github.com/invopop/ctxi18n"
 	_ "github.com/joho/godotenv/autoload"
+	"github.com/lionpuro/lionpuro.com/blog"
 	"github.com/lionpuro/lionpuro.com/locales"
 	"golang.org/x/text/language"
 )
@@ -20,6 +21,12 @@ func main() {
 	if err := ctxi18n.Load(locales.Content); err != nil {
 		log.Fatalf("error loading locales: %v", err)
 	}
+
+	posts, err := blog.ParsePosts("./content/posts")
+	if err != nil {
+		log.Fatalf("error parsing posts: %v", err)
+	}
+
 	rootRouter := http.NewServeMux()
 
 	pageRouter := http.NewServeMux()
@@ -27,8 +34,8 @@ func main() {
 	routes := map[string]http.HandlerFunc{
 		"GET /":            indexHandler,
 		"GET /projects":    projectsHandler,
-		"GET /blog":        blogHandler,
-		"GET /blog/{slug}": postHandler,
+		"GET /blog":        blogHandler(posts),
+		"GET /blog/{slug}": postHandler(posts),
 	}
 	registerRoutes(pageRouter, routes)
 

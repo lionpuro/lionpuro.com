@@ -36,42 +36,37 @@ func projectsHandler(w http.ResponseWriter, r *http.Request) {
 	component.Render(r.Context(), w)
 }
 
-func blogHandler(w http.ResponseWriter, r *http.Request) {
-	posts, err := blog.ListPosts()
-	if err != nil {
-		component := views.ErrorPage(http.StatusInternalServerError, "Internal server error")
-		if !isHX(r) {
-			component = views.FullPage(component, "Lion Puro", "")
+func blogHandler(posts *blog.Posts) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		title := i18n.T(r.Context(), "meta.blog.title")
+		desc := i18n.T(r.Context(), "meta.blog.description")
+		component := views.FullPage(views.Blog(false, posts.All), title, desc)
+		if isHX(r) {
+			component = views.Blog(true, posts.All)
 		}
 		component.Render(r.Context(), w)
-		return
 	}
-	title := i18n.T(r.Context(), "meta.blog.title")
-	desc := i18n.T(r.Context(), "meta.blog.description")
-	component := views.FullPage(views.Blog(false, posts), title, desc)
-	if isHX(r) {
-		component = views.Blog(true, posts)
-	}
-	component.Render(r.Context(), w)
 }
 
-func postHandler(w http.ResponseWriter, r *http.Request) {
-	slug := r.PathValue("slug")
-	post, err := blog.ParsePost(slug)
-	if err != nil {
-		notFoundHandler(w, r)
-		return
+func postHandler(posts *blog.Posts) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		slug := r.PathValue("slug")
+		post := posts.BySlug[slug]
+		if post == nil {
+			notFoundHandler(w, r)
+			return
+		}
+		content := unsafe(post.Content)
+		component := views.FullPage(
+			views.Post(false, post.Title, post.Date, content),
+			post.Title,
+			post.Summary,
+		)
+		if isHX(r) {
+			component = views.Post(true, post.Title, post.Date, content)
+		}
+		component.Render(r.Context(), w)
 	}
-	content := unsafe(post.Content)
-	component := views.FullPage(
-		views.Post(false, post.Title, post.Date, content),
-		post.Title,
-		post.Summary,
-	)
-	if isHX(r) {
-		component = views.Post(true, post.Title, post.Date, content)
-	}
-	component.Render(r.Context(), w)
 }
 
 func notFoundHandler(w http.ResponseWriter, r *http.Request) {

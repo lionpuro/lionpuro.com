@@ -15,6 +15,11 @@ import (
 	"github.com/yuin/goldmark/renderer/html"
 )
 
+type Posts struct {
+	All    []*Post
+	BySlug map[string]*Post
+}
+
 type PostMetadata struct {
 	Slug    string
 	Title   string
@@ -23,26 +28,28 @@ type PostMetadata struct {
 }
 
 type Post struct {
+	Slug    string
 	Title   string
 	Summary string
 	Date    time.Time
 	Content string
 }
 
-func parseDate(d string) (time.Time, error) {
-	t, err := time.Parse(time.DateOnly, d)
-	if err != nil {
-		return time.Time{}, err
+func ParsePosts(dir string) (*Posts, error) {
+	posts := &Posts{
+		All:    []*Post{},
+		BySlug: make(map[string]*Post),
 	}
-	return t, nil
-}
-
-func ListPosts() ([]PostMetadata, error) {
-	dir := "./content/posts"
 	markdown := goldmark.New(
-		goldmark.WithExtensions(meta.Meta),
+		goldmark.WithExtensions(
+			meta.Meta,
+			highlighting.NewHighlighting(
+				highlighting.WithCustomStyle(customTheme()),
+			),
+		),
+		goldmark.WithRendererOptions(html.WithUnsafe()),
 	)
-	var posts []PostMetadata
+
 	files, err := os.ReadDir(dir)
 	if err != nil {
 		return nil, fmt.Errorf("error reading markdown posts %v", err)
@@ -66,52 +73,23 @@ func ListPosts() ([]PostMetadata, error) {
 			return nil, fmt.Errorf("error parsing post date: %v", err)
 		}
 
-		posts = append(posts, metadata)
+		post := &Post{
+			Slug:    metadata.Slug,
+			Title:   metadata.Title,
+			Summary: metadata.Summary,
+			Date:    metadata.Date,
+			Content: buf.String(),
+		}
+
+		posts.BySlug[post.Slug] = post
+		posts.All = append(posts.All, post)
 	}
 
-	sort.SliceStable(posts, func(i, j int) bool {
-		return posts[i].Date.After(posts[j].Date)
+	sort.SliceStable(posts.All, func(i, j int) bool {
+		return posts.All[i].Date.After(posts.All[j].Date)
 	})
 
 	return posts, nil
-}
-
-func ParsePost(slug string) (*Post, error) {
-	dir := fmt.Sprintf("./content/posts/%s.md", slug)
-	content, err := os.ReadFile(dir)
-	if err != nil {
-		return nil, fmt.Errorf("error reading markdown file %v", err)
-	}
-
-	markdown := goldmark.New(
-		goldmark.WithExtensions(meta.Meta,
-			highlighting.NewHighlighting(
-				highlighting.WithCustomStyle(customTheme()),
-			),
-		),
-		goldmark.WithRendererOptions(html.WithUnsafe()),
-	)
-
-	ctx := parser.NewContext()
-
-	var buf bytes.Buffer
-	if err := markdown.Convert(content, &buf, parser.WithContext(ctx)); err != nil {
-		return nil, err
-	}
-
-	metadata, err := parseMetadata(ctx)
-	if err != nil {
-		return nil, fmt.Errorf("error parsing post date: %v", err)
-	}
-
-	post := &Post{
-		Title:   metadata.Title,
-		Summary: metadata.Summary,
-		Date:    metadata.Date,
-		Content: buf.String(),
-	}
-
-	return post, nil
 }
 
 func parseMetadata(ctx parser.Context) (PostMetadata, error) {
@@ -151,4 +129,12 @@ func parseMetadata(ctx parser.Context) (PostMetadata, error) {
 		Date:    d,
 	}
 	return m, nil
+}
+
+func parseDate(d string) (time.Time, error) {
+	t, err := time.Parse(time.DateOnly, d)
+	if err != nil {
+		return time.Time{}, err
+	}
+	return t, nil
 }

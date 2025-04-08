@@ -6,7 +6,7 @@ import (
 	"github.com/lionpuro/lionpuro.com/locales"
 )
 
-templ Blog(isHX bool, posts []blog.PostMetadata) {
+templ Blog(isHX bool, posts []*blog.Post) {
 	if isHX {
 		<title>
 			@t("meta.blog.title")
