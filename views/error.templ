@@ -9,9 +9,9 @@ templ ErrorPage(code int, message string) {
 			<p class="text-lg font-medium">
 				{ message }
 			</p>
-			@localizedLink("/", "mt-2 bg-primary-600 px-4 py-2 rounded-md font-medium") {
-				@t("back-home")
-			}
+			<a href="/" class="mt-2 bg-primary-600 px-4 py-2 rounded-md font-medium">
+				Back to home
+			</a>
 		</div>
 	</div>
 }

@@ -1,35 +1,37 @@
 package views
 
-import "fmt"
-
 type projectData struct {
-	id    string
-	image string
-	url   string
-	repo  string
-	tags  []string
+	id          string
+	image       string
+	url         string
+	repo        string
+	tags        []string
+	title       string
+	description string
 }
 
 var projects = []projectData{
 	{
-		id:    "mug-editor",
-		image: "/static/images/mug-editor-demo.webp",
-		url:   "https://kankainen.org/mukieditori",
-		repo:  "",
-		tags:  []string{"Frontend", "TypeScript", "React"},
+		id:          "mug-editor",
+		image:       "/static/images/mug-editor-demo.webp",
+		url:         "https://kankainen.org/mukieditori",
+		repo:        "",
+		tags:        []string{"Frontend", "TypeScript", "React"},
+		title:       "Mug editor",
+		description: "A mug designing tool I built from the ground up for Mikko Kankainen OY. It allows customers to customize printable mugs to their liking with images and text and view a 3D-visualization of it.",
 	},
 }
 
 templ Projects(isHX bool) {
 	if isHX {
 		<title>
-			@t("meta.projects.title")
+			Projects - Lion Puro
 		</title>
 	}
 	<div class="flex flex-col">
 		<div class="flex flex-col border-b border-base-900 gap-4 pb-4">
 			@mainHeading() {
-				@t("Projects")
+				Projects
 			}
 		</div>
 		<div class="flex flex-col">
@@ -39,7 +41,7 @@ templ Projects(isHX bool) {
 					<div class="grow flex flex-col gap-3">
 						<div class="flex items-center gap-2">
 							<h2 class="text-xl font-semibold">
-								@t(fmt.Sprintf("projects.%s.title", p.id))
+								{ p.title }
 							</h2>
 							<span class="ml-auto flex gap-2">
 								if p.repo != "" {
@@ -65,7 +67,7 @@ templ Projects(isHX bool) {
 							</span>
 						</div>
 						<p class="text-base-300">
-							@t(fmt.Sprintf("projects.%s.description", p.id))
+							{ p.description }
 						</p>
 						<div class="flex gap-2">
 							for _, t := range p.tags {

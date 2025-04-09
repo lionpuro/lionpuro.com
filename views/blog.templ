@@ -3,35 +3,32 @@ package views
 import (
 	"fmt"
 	"github.com/lionpuro/lionpuro.com/blog"
-	"github.com/lionpuro/lionpuro.com/locales"
 )
 
 templ Blog(isHX bool, posts []*blog.Post) {
 	if isHX {
-		<title>
-			@t("meta.blog.title")
-		</title>
+		<title>Blog - Lion Puro </title>
 	}
 	<div class="flex flex-col">
 		<div class="flex flex-col border-b border-base-900 gap-4 pb-4">
 			@mainHeading() {
-				@t("Blog")
+				Blog
 			}
 			<p class="text-base-300">
-				@t("blog.description")
+				Here I document my journey and solutions to interesting problems.
 			</p>
 		</div>
 		<div class="flex flex-col">
 			for _, post := range posts {
 				<article class="py-4">
 					<a
-						href={ localizedURL(ctx, fmt.Sprintf("/blog/%s", post.Slug)) }
+						href={ templ.URL(fmt.Sprintf("/blog/%s", post.Slug)) }
 						hx-boost="true"
 						hx-target="#content"
 						hx-swap="innerHTML show:none"
 						class="flex flex-col gap-2 hover:[&>h2]:underline"
 					>
-						<span class="text-base-500 text-sm font-medium">{ locales.DateString(ctx, post.Date) }</span>
+						<span class="text-base-500 text-sm font-medium">{ dateString(post.Date) }</span>
 						<h2 class="text-xl font-semibold decoration-1 underline-offset-2">
 							{ post.Title }
 						</h2>

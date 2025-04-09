@@ -2,26 +2,22 @@ package views
 
 templ Home(isHX bool) {
 	if isHX {
-		<title>
-			@t("meta.home.title")
-		</title>
+		<title>Lion Puro </title>
 	}
 	<div class="my-auto flex flex-col justify-center">
 		<div class="flex max-w-xl flex-col">
 			<div class="flex flex-col mb-3">
 				<p class="text-lg sm:text-xl font-medium px-0.5">
-					@t("intro.hello-i-am")
+					Hi, I'm
 				</p>
 				<h1 class="text-4xl sm:text-5xl font-bold">Lion Puro </h1>
 			</div>
 			<p class="px-1 text-base-300 sm:text-lg">
-				<strong>
-					@t("intro.full-stack-developer")
-				</strong>
-				@t("intro.and-problem-solver")
+				<strong>full stack developer </strong>
+				and a problem solver
 			</p>
 			<p class="px-1 text-base-300 mb-2 sm:text-lg">
-				@t("intro.here-i-document")
+				This is where I document my journey as a developer.
 			</p>
 		</div>
 	</div>

@@ -1,10 +1,8 @@
 package views
 
-import "github.com/lionpuro/lionpuro.com/locales"
-
 templ Base(title, description string) {
 	<!DOCTYPE html>
-	<html lang={ locales.LocaleCode(ctx) }>
+	<html lang="en">
 		<head>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -21,7 +19,7 @@ templ Base(title, description string) {
 		</head>
 		<body>
 			<div id="root" class="flex flex-col min-h-full w-full max-w-3xl mx-auto">
-				@Header(locales.LocaleCode(ctx))
+				@Header()
 				<main id="content" class="flex flex-col p-6 sm:p-8 grow">
 					{ children... }
 				</main>
