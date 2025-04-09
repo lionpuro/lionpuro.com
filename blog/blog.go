@@ -2,6 +2,7 @@ package blog
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
 	"os"
 	"path"
@@ -40,6 +41,7 @@ func ParsePosts(dir string) (*Posts, error) {
 		All:    []*Post{},
 		BySlug: make(map[string]*Post),
 	}
+
 	markdown := goldmark.New(
 		goldmark.WithExtensions(
 			meta.Meta,
@@ -68,17 +70,11 @@ func ParsePosts(dir string) (*Posts, error) {
 			return nil, err
 		}
 
-		metadata, err := parseMetadata(ctx)
-		if err != nil {
-			return nil, fmt.Errorf("error parsing post date: %v", err)
-		}
+		metadata := meta.Get(ctx)
 
-		post := &Post{
-			Slug:    metadata.Slug,
-			Title:   metadata.Title,
-			Summary: metadata.Summary,
-			Date:    metadata.Date,
-			Content: buf.String(),
+		post, err := newPost(metadata, buf.String())
+		if err != nil {
+			return nil, fmt.Errorf("new post: %v", err)
 		}
 
 		posts.BySlug[post.Slug] = post
@@ -92,43 +88,36 @@ func ParsePosts(dir string) (*Posts, error) {
 	return posts, nil
 }
 
-func parseMetadata(ctx parser.Context) (PostMetadata, error) {
-	metadata := meta.Get(ctx)
-
-	slug := ""
-	title := ""
-	summary := ""
-	date := ""
-
-	if sl, ok := metadata["Slug"].(string); ok {
-		slug = sl
+func newPost(metadata map[string]interface{}, content string) (*Post, error) {
+	slug, ok := metadata["Slug"].(string)
+	if !ok {
+		return nil, errors.New("invalid slug")
 	}
-	if t, ok := metadata["Title"].(string); ok {
-		title = t
+	title, ok := metadata["Title"].(string)
+	if !ok {
+		return nil, errors.New("invalid title")
 	}
-	if s, ok := metadata["Summary"].(string); ok {
-		summary = s
+	summary, ok := metadata["Summary"].(string)
+	if !ok {
+		return nil, errors.New("invalid summary")
 	}
-	if d, ok := metadata["Date"].(string); ok {
-		date = d
+	dateString, ok := metadata["Date"].(string)
+	if !ok {
+		return nil, errors.New("invalid date")
 	}
-
-	if title == "" || summary == "" || date == "" || slug == "" {
-		return PostMetadata{}, fmt.Errorf("missing metadata in file %s", slug)
-	}
-
-	d, err := parseDate(date)
+	date, err := parseDate(dateString)
 	if err != nil {
-		return PostMetadata{}, fmt.Errorf("error parsing post date: %v", err)
+		return nil, errors.New("invalid date")
 	}
 
-	m := PostMetadata{
+	post := &Post{
 		Slug:    slug,
 		Title:   title,
 		Summary: summary,
-		Date:    d,
+		Date:    date,
+		Content: content,
 	}
-	return m, nil
+	return post, nil
 }
 
 func parseDate(d string) (time.Time, error) {
