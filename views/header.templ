@@ -1,19 +1,17 @@
 package views
 
 templ Header() {
-	<header class="flex items-center bg-base-950 py-2">
+	<header class="flex items-center bg-base-950 py-2 px-6 sm:px-8 mb-8">
 		<nav
 			hx-boost="true"
 			hx-target="#content"
 			hx-swap="innerHTML show:none"
-			class="max-w-4xl mx-auto w-full flex items-center px-6 sm:px-8 gap-2 sm:gap-4"
+			class="max-w-4xl mx-auto w-full flex items-center"
 		>
-			<a href="/" class="text-xl font-semibold py-2.5 text-base-white">
-				Lion Puro
-			</a>
-			<div class="ml-auto flex items-center sm:gap-2">
-				<a href="/projects" class="p-2 font-medium">Projects</a>
-				<a href="/blog" class="p-2 font-medium">Blog</a>
+			<div class="ml-auto flex items-center gap-2">
+				<a href="/" class="p-2 font-medium">home</a>
+				<a href="/projects" class="p-2 font-medium">projects</a>
+				<a href="/blog" class="p-2 font-medium">blog</a>
 			</div>
 		</nav>
 	</header>
