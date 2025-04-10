@@ -37,7 +37,7 @@ func projectsHandler(w http.ResponseWriter, r *http.Request) {
 
 func blogHandler(posts *blog.Posts) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		title := "Blog - Lion Puro"
+		title := "Posts - Lion Puro"
 		desc := "Thoughts and notes, mostly related to web development."
 		component := views.FullPage(views.Blog(false, posts.All), title, desc)
 		if isHX(r) {

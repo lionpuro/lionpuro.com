@@ -7,12 +7,12 @@ import (
 
 templ Blog(isHX bool, posts []*blog.Post) {
 	if isHX {
-		<title>Blog - Lion Puro </title>
+		<title>Posts - Lion Puro </title>
 	}
 	<div class="flex flex-col">
 		<div class="flex flex-col gap-2 mb-4">
 			@mainHeading() {
-				Blog
+				Posts
 			}
 			<p class="text-base-300">
 				Thoughts and notes, mostly related to web development.
@@ -22,7 +22,7 @@ templ Blog(isHX bool, posts []*blog.Post) {
 			for _, post := range posts {
 				<article class="py-4">
 					<a
-						href={ templ.URL(fmt.Sprintf("/blog/%s", post.Slug)) }
+						href={ templ.URL(fmt.Sprintf("/posts/%s", post.Slug)) }
 						hx-boost="true"
 						hx-target="#content"
 						hx-swap="innerHTML show:none"

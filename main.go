@@ -24,10 +24,10 @@ func main() {
 	pageRouter := http.NewServeMux()
 
 	routes := map[string]http.HandlerFunc{
-		"GET /":            indexHandler,
-		"GET /projects":    projectsHandler,
-		"GET /blog":        blogHandler(posts),
-		"GET /blog/{slug}": postHandler(posts),
+		"GET /":             indexHandler,
+		"GET /projects":     projectsHandler,
+		"GET /posts":        blogHandler(posts),
+		"GET /posts/{slug}": postHandler(posts),
 	}
 	registerRoutes(pageRouter, routes)
 
