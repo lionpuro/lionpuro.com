@@ -17,7 +17,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	title := "Lion Puro"
-	desc := "Full stack developer"
+	desc := "Full stack developer from Finland. Here I document my journey as a developer."
 	component := views.FullPage(views.Home(false), title, desc)
 	if isHX(r) {
 		component = views.Home(true)

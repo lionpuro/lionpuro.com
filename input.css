@@ -73,7 +73,7 @@ body {
 
 @layer base {
 	strong, b {
-		@apply font-semibold text-base-white;
+		@apply font-medium text-base-white;
 	}
 }
 
