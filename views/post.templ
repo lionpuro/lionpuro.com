@@ -6,8 +6,19 @@ templ Post(isHX bool, title string, date time.Time, content templ.Component) {
 	if isHX {
 		<title>{ title }</title>
 	}
-	<div class="blog-post flex flex-col leading-7">
-		<span class="text-base-400 font-medium mb-1">{ dateString(date) }</span>
-		@content
+	<div class="flex flex-col leading-7">
+		<span class="text-sm text-base-400 font-medium mb-1">{ dateString(date) }</span>
+		<div class="blog-post flex flex-col">
+			@content
+		</div>
+		<a
+			href="/posts"
+			hx-boost="true"
+			hx-target="#content"
+			hx-swap="innerHTML show:none"
+			class="whitespace-pre flex text-primary-400 font-medium items-center mt-4 hover:underline before:content-['←'] before:font-bold"
+		>
+			{ " Back to posts" }
+		</a>
 	</div>
 }
