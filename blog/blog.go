@@ -12,6 +12,7 @@ import (
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark-highlighting/v2"
 	"github.com/yuin/goldmark-meta"
+	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
 	"github.com/yuin/goldmark/renderer/html"
 )
@@ -48,6 +49,7 @@ func ParsePosts(dir string) (*Posts, error) {
 			highlighting.NewHighlighting(
 				highlighting.WithCustomStyle(customTheme()),
 			),
+			extension.Table,
 		),
 		goldmark.WithRendererOptions(html.WithUnsafe()),
 	)
