@@ -22,13 +22,6 @@ type Posts struct {
 	BySlug map[string]*Post
 }
 
-type PostMetadata struct {
-	Slug    string
-	Title   string
-	Summary string
-	Date    time.Time
-}
-
 type Post struct {
 	Slug    string
 	Title   string
