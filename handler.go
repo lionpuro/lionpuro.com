@@ -1,13 +1,9 @@
 package main
 
 import (
-	"context"
-	"io"
-	"net/http"
-
-	"github.com/a-h/templ"
 	"github.com/lionpuro/lionpuro.com/blog"
 	"github.com/lionpuro/lionpuro.com/views"
+	"net/http"
 )
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
@@ -55,14 +51,13 @@ func postHandler(posts *blog.Posts) http.HandlerFunc {
 			notFoundHandler(w, r)
 			return
 		}
-		content := unsafe(post.Content)
 		component := views.FullPage(
-			views.Post(false, post.Title, post.Date, content),
+			views.Post(false, post),
 			post.Title,
 			post.Summary,
 		)
 		if isHX(r) {
-			component = views.Post(true, post.Title, post.Date, content)
+			component = views.Post(true, post)
 		}
 		component.Render(r.Context(), w)
 	}
@@ -76,11 +71,4 @@ func notFoundHandler(w http.ResponseWriter, r *http.Request) {
 		component = views.FullPage(component, msg, "")
 	}
 	component.Render(r.Context(), w)
-}
-
-func unsafe(html string) templ.Component {
-	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) error {
-		_, err := io.WriteString(w, html)
-		return err
-	})
 }

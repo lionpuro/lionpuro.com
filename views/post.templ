@@ -1,15 +1,19 @@
 package views
 
-import "time"
+import (
+	"context"
+	"github.com/lionpuro/lionpuro.com/blog"
+	"io"
+)
 
-templ Post(isHX bool, title string, date time.Time, content templ.Component) {
+templ Post(isHX bool, post *blog.Post) {
 	if isHX {
-		<title>{ title }</title>
+		<title>{ post.Title }</title>
 	}
 	<div class="flex flex-col leading-7">
-		<span class="text-sm text-base-400 font-medium mb-1">{ dateString(date) }</span>
+		<span class="text-sm text-base-400 font-medium mb-1">{ dateString(post.Date) }</span>
 		<div class="blog-post flex flex-col">
-			@content
+			@unsafe(post.Content)
 		</div>
 		<a
 			href="/posts"
@@ -21,4 +25,11 @@ templ Post(isHX bool, title string, date time.Time, content templ.Component) {
 			{ " Back to posts" }
 		</a>
 	</div>
+}
+
+func unsafe(html string) templ.Component {
+	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) error {
+		_, err := io.WriteString(w, html)
+		return err
+	})
 }
