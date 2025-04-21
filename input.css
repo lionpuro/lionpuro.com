@@ -149,6 +149,9 @@ body {
 			p {
 				@apply m-0 italic text-base-100;
 			}
+			strong {
+				font-style: normal;
+			}
 		}
 		blockquote::before {
 			flex-shrink: 0;
