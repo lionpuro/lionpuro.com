@@ -33,6 +33,11 @@ templ Blog(isHX bool, posts []*blog.Post) {
 							{ post.Title }
 						</h2>
 						<div class="text-base-300">{ post.Summary }</div>
+						<div class="flex gap-3">
+							for _, tag := range post.Tags {
+								<span class="text-accent text-sm font-medium before:content-['#'] before:mr-0.25">{ tag }</span>
+							}
+						</div>
 					</a>
 				</article>
 			}

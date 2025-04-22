@@ -27,6 +27,7 @@ type Post struct {
 	Title   string
 	Summary string
 	Date    time.Time
+	Tags    []string
 	Content string
 }
 
@@ -105,11 +106,23 @@ func newPost(metadata map[string]interface{}, content string) (*Post, error) {
 		return nil, errors.New("invalid date")
 	}
 
+	tags := []string{}
+	tgs, ok := metadata["Tags"].([]interface{})
+	if ok {
+		for _, t := range tgs {
+			str, ok := t.(string)
+			if ok {
+				tags = append(tags, str)
+			}
+		}
+	}
+
 	post := &Post{
 		Slug:    slug,
 		Title:   title,
 		Summary: summary,
 		Date:    date,
+		Tags:    tags,
 		Content: content,
 	}
 	return post, nil

@@ -3,6 +3,9 @@ Slug: trailing-slash-redirect-in-go
 Title: Trailing slash redirect in Go
 Summary: A quick middleware for redirecting routes with a trailing slash to a route without it.
 Date: 2025-04-19
+Tags:
+    - Snippet
+    - Go
 ---
 
 # Trailing slash redirect in Go
@@ -32,7 +35,7 @@ func redirectTrailingSlash(next http.Handler) http.Handler {
 }
 
 func main() {
-    mux := http.NewServeMux()
+	mux := http.NewServeMux()
 
 	server := &http.Server{
 		Handler: redirectTrailingSlash(mux),
