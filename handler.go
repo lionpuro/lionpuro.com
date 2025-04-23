@@ -33,11 +33,25 @@ func projectsHandler(w http.ResponseWriter, r *http.Request) {
 
 func blogHandler(posts *blog.Posts) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		tag := r.URL.Query().Get("tag")
+		psts := posts.All
+
+		switch {
+		case tag == "":
+			break
+		case posts.ByTag[tag] != nil:
+			psts = posts.ByTag[tag]
+		default:
+			notFoundHandler(w, r)
+			return
+		}
+
 		title := "Posts - Lion Puro"
 		desc := "Thoughts and notes, mostly related to web development."
-		component := views.FullPage(views.Blog(false, posts.All), title, desc)
+
+		component := views.FullPage(views.Blog(false, psts, posts.Tags, tag), title, desc)
 		if isHX(r) {
-			component = views.Blog(true, posts.All)
+			component = views.Blog(true, psts, posts.Tags, tag)
 		}
 		component.Render(r.Context(), w)
 	}

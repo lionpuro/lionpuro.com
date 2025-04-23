@@ -5,7 +5,7 @@ import (
 	"github.com/lionpuro/lionpuro.com/blog"
 )
 
-templ Blog(isHX bool, posts []*blog.Post) {
+templ Blog(isHX bool, posts []*blog.Post, tags []string, selectedTag string) {
 	if isHX {
 		<title>Posts - Lion Puro </title>
 	}
@@ -18,6 +18,32 @@ templ Blog(isHX bool, posts []*blog.Post) {
 				Thoughts and notes, mostly related to web development.
 			</p>
 		</div>
+		if len(tags) > 1 {
+			<div
+				class="flex gap-1 mb-4"
+				hx-boost="true"
+				hx-target="#content"
+				hx-swap="innerHTML show:none"
+				hx-push-url="false"
+			>
+				for _, tag := range tags {
+					<a
+						if tag == selectedTag {
+							href={ templ.URL(fmt.Sprintf("/posts")) }
+						} else {
+							href={ templ.URL(fmt.Sprintf("/posts?tag=%s", tag)) }
+						}
+						class={
+							templ.KV("text-base-white bg-primary-500/95", selectedTag == tag),
+							templ.KV("text-base-100 hover:bg-base-800 bg-base-800/50", selectedTag != tag),
+							"py-1 px-2 rounded-sm text-sm font-medium before:content-['#'] before:mr-0.25",
+						}
+					>
+						{ tag }
+					</a>
+				}
+			</div>
+		}
 		<div class="flex flex-col">
 			for _, post := range posts {
 				<article class="py-4">
@@ -28,16 +54,18 @@ templ Blog(isHX bool, posts []*blog.Post) {
 						hx-swap="innerHTML show:none"
 						class="flex flex-col gap-2 hover:[&>h2]:underline"
 					>
-						<span class="text-base-500 text-sm font-medium">{ dateString(post.Date) }</span>
+						<div class="flex gap-3">
+							<span class="text-base-500 text-sm font-medium mr-auto">{ dateString(post.Date) }</span>
+							for _, tag := range post.Tags {
+								<span class="text-primary-400 text-sm font-medium before:content-['#'] before:mr-0.25">
+									{ tag }
+								</span>
+							}
+						</div>
 						<h2 class="text-xl font-semibold decoration-1 underline-offset-2">
 							{ post.Title }
 						</h2>
 						<div class="text-base-300">{ post.Summary }</div>
-						<div class="flex gap-3">
-							for _, tag := range post.Tags {
-								<span class="text-accent text-sm font-medium before:content-['#'] before:mr-0.25">{ tag }</span>
-							}
-						</div>
 					</a>
 				</article>
 			}
