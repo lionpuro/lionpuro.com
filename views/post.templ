@@ -16,21 +16,23 @@ templ Post(isHX bool, post *blog.Post) {
 		<div class="blog-post flex flex-col">
 			@unsafe(post.Content)
 		</div>
-		<div class="mt-4 flex gap-3">
-			<span class="text-base-400 text-sm font-medium">Tags:</span>
-			for _, tag := range post.Tags {
-				<a
-					href={ templ.URL(fmt.Sprintf("/posts?tag=%s", tag)) }
-					hx-boost="true"
-					hx-target="#content"
-					hx-swap="innerHTML show:none"
-					hx-push-url="/posts"
-					class="text-primary-400 text-sm font-medium before:content-['#'] before:mr-0.25"
-				>
-					{ tag }
-				</a>
-			}
-		</div>
+		if len(post.Tags) > 0 {
+			<div class="mt-4 flex gap-3">
+				<span class="text-base-400 text-sm font-medium">Tags:</span>
+				for _, tag := range post.Tags {
+					<a
+						href={ templ.URL(fmt.Sprintf("/posts?tag=%s", tag)) }
+						hx-boost="true"
+						hx-target="#content"
+						hx-swap="innerHTML show:none"
+						hx-push-url="/posts"
+						class="text-primary-400 text-sm font-medium before:content-['#'] before:mr-0.25"
+					>
+						{ tag }
+					</a>
+				}
+			</div>
+		}
 		<a
 			href="/posts"
 			hx-boost="true"
