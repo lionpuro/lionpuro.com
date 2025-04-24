@@ -45,8 +45,7 @@ templ Projects(isHX bool) {
 		</div>
 		<div class="flex flex-col">
 			for _, p := range projects {
-				<div class="flex flex-col md:flex-row-reverse gap-4 md:gap-8 my-4">
-					<img src={ p.image } alt="" loading="lazy" class="shrink-0 grow rounded-sm aspect-video md:w-[calc(50%)]"/>
+				<div class="flex max-md:flex-col-reverse md:flex-row gap-4 md:gap-8 my-4">
 					<div class="grow flex flex-col gap-3">
 						<div class="flex items-center gap-2">
 							<h2 class="text-xl font-semibold">
@@ -86,6 +85,11 @@ templ Projects(isHX bool) {
 							}
 						</div>
 					</div>
+					<modal-image minWidth="768" class="shrink-0 md:w-1/2">
+						<a href={ templ.URL(p.image) } target="_blank" rel="noopener noreferrer">
+							<img src={ p.image } alt="" loading="lazy" class="shrink-0 rounded-sm object-contain aspect-video w-full"/>
+						</a>
+					</modal-image>
 				</div>
 			}
 		</div>

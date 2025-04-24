@@ -75,9 +75,34 @@ body {
 	strong, b {
 		@apply font-medium text-base-white;
 	}
+	button {
+		@apply cursor-pointer;
+	}
 }
 
 @layer components {
+	.modal-image__dialog {
+		@apply relative m-auto bg-transparent overflow-visible;
+	}
+
+	.modal-image__dialog::backdrop {
+		background-color: rgba(0, 0, 0, 0.75);
+	}
+
+	.modal-image__dialog__content {
+		@apply flex justify-center items-center min-w-0 min-h-0;
+	}
+
+	.modal-image__close {
+		@apply absolute -top-10 -right-10 flex justify-center items-center size-10 text-3xl text-base-white outline-none;
+	}
+
+	.modal-image__image {
+		@apply object-contain min-w-0 min-h-0;
+		max-width: calc(100dvw - 5rem);
+		max-height: calc(100dvh - 5rem);
+	}
+
 	.blog-post {
 		h1 {
 			@apply text-2xl font-bold mb-6;
