@@ -35,7 +35,7 @@ templ Blog(isHX bool, posts []*blog.Post, tags []string, selectedTag string) {
 						}
 						class={
 							templ.KV("text-base-white bg-primary-500/95", selectedTag == tag),
-							templ.KV("text-base-100 hover:bg-base-800 bg-base-800/50", selectedTag != tag),
+							templ.KV("text-base-100 bg-base-800/50 hover:bg-base-800 hover:text-base-50", selectedTag != tag),
 							"py-1 px-2 rounded-sm text-sm font-medium before:content-['#'] before:mr-0.25",
 						}
 					>
