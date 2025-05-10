@@ -63,8 +63,8 @@ iPhone 13's with the following results:
 
 | Version | Max Area    | Pixels       |
 |---------|-------------|--------------|
-| 17.7.2  | 4096 x 4096 | 16 777 216   |
-| 18.0    | 8192 x 8192 | 67 108 864   |
+| 17.7.2  | 4096 x 4096 | 16,777,216   |
+| 18.0    | 8192 x 8192 | 67,108,864   |
 
 Based on those test results, I think it's safe to say that
 in **iOS 18.0** the `<canvas>` size limit has been increased to
