@@ -14,20 +14,14 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	title := "Lion Puro"
 	desc := "Full stack developer from Finland. Here I document my journey as a developer."
-	component := views.FullPage(views.Home(false), title, desc)
-	if isHX(r) {
-		component = views.Home(true)
-	}
+	component := views.FullPage(views.Home(), title, desc)
 	component.Render(r.Context(), w)
 }
 
 func projectsHandler(w http.ResponseWriter, r *http.Request) {
 	title := "Projects - Lion Puro"
 	desc := "Full stack developer"
-	component := views.FullPage(views.Projects(false), title, desc)
-	if isHX(r) {
-		component = views.Projects(true)
-	}
+	component := views.FullPage(views.Projects(), title, desc)
 	component.Render(r.Context(), w)
 }
 
@@ -48,11 +42,7 @@ func blogHandler(posts *blog.Posts) http.HandlerFunc {
 
 		title := "Posts - Lion Puro"
 		desc := "Thoughts and notes, mostly related to web development."
-
-		component := views.FullPage(views.Blog(false, psts, posts.Tags, tag), title, desc)
-		if isHX(r) {
-			component = views.Blog(true, psts, posts.Tags, tag)
-		}
+		component := views.FullPage(views.Blog(psts, posts.Tags, tag), title, desc)
 		component.Render(r.Context(), w)
 	}
 }
@@ -66,13 +56,10 @@ func postHandler(posts *blog.Posts) http.HandlerFunc {
 			return
 		}
 		component := views.FullPage(
-			views.Post(false, post),
+			views.Post(post),
 			post.Title,
 			post.Summary,
 		)
-		if isHX(r) {
-			component = views.Post(true, post)
-		}
 		component.Render(r.Context(), w)
 	}
 }
@@ -81,8 +68,5 @@ func notFoundHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotFound)
 	msg := "Page not found"
 	component := views.ErrorPage(http.StatusNotFound, msg)
-	if !isHX(r) {
-		component = views.FullPage(component, msg, "")
-	}
 	component.Render(r.Context(), w)
 }

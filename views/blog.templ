@@ -5,10 +5,7 @@ import (
 	"github.com/lionpuro/lionpuro.com/blog"
 )
 
-templ Blog(isHX bool, posts []*blog.Post, tags []string, selectedTag string) {
-	if isHX {
-		<title>Posts - Lion Puro </title>
-	}
+templ Blog(posts []*blog.Post, tags []string, selectedTag string) {
 	<div class="flex flex-col">
 		<div class="flex flex-col gap-2 mb-4">
 			@mainHeading() {
@@ -22,7 +19,6 @@ templ Blog(isHX bool, posts []*blog.Post, tags []string, selectedTag string) {
 			<div
 				class="flex gap-1 mb-4"
 				hx-boost="true"
-				hx-target="#content"
 				hx-swap="innerHTML show:none"
 				hx-push-url="false"
 			>
@@ -50,7 +46,6 @@ templ Blog(isHX bool, posts []*blog.Post, tags []string, selectedTag string) {
 					<a
 						href={ templ.URL(fmt.Sprintf("/posts/%s", post.Slug)) }
 						hx-boost="true"
-						hx-target="#content"
 						hx-swap="innerHTML show:none"
 						class="flex flex-col gap-2 hover:[&>h2]:underline"
 					>
