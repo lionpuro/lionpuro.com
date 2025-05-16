@@ -5,7 +5,6 @@ Summary: Safari has been a bit problematic when working with the <canvas> elemen
 Date: 2025-05-10
 Tags:
     - canvas
-    - browsers
 ---
 
 # Canvas is finally usable on Safari
