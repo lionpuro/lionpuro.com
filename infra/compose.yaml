@@ -25,3 +25,8 @@ services:
       - server
     networks:
       - caddy
+    volumes:
+      - caddy_data:/data
+
+volumes:
+  caddy_data:
