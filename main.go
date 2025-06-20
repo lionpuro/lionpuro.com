@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"net/http"
@@ -69,6 +70,7 @@ func removeTrailingSlash(next http.Handler) http.HandlerFunc {
 func commonMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Add("Content-Type", "text/html")
-		next.ServeHTTP(w, r)
+		ctx := context.WithValue(r.Context(), "path", r.URL.Path)
+		next.ServeHTTP(w, r.WithContext(ctx))
 	})
 }

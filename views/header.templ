@@ -1,5 +1,24 @@
 package views
 
+import "context"
+
+func currentPath(ctx context.Context) string {
+	val, ok := ctx.Value("path").(string)
+	if !ok {
+		return ""
+	}
+	return val
+}
+
+var navLinks = []struct {
+	href string
+	text string
+}{
+	{href: "/", text: "home"},
+	{href: "/projects", text: "projects"},
+	{href: "/posts", text: "posts"},
+}
+
 templ Header() {
 	<header class="flex items-center bg-base-950 py-2 px-6 sm:px-8 mb-8">
 		<nav
@@ -8,9 +27,14 @@ templ Header() {
 			class="max-w-4xl mx-auto w-full flex items-center"
 		>
 			<div class="ml-auto flex items-center gap-2">
-				<a href="/" class="p-2 font-medium">home</a>
-				<a href="/projects" class="p-2 font-medium">projects</a>
-				<a href="/posts" class="p-2 font-medium">posts</a>
+				for _, link := range navLinks {
+					<a
+						href={ templ.URL(link.href) }
+						class={ "p-2 font-medium", templ.KV("text-primary-300", currentPath(ctx) == link.href) }
+					>
+						{ link.text }
+					</a>
+				}
 			</div>
 		</nav>
 	</header>
