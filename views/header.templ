@@ -26,11 +26,11 @@ templ Header() {
 			hx-swap="innerHTML show:none"
 			class="max-w-4xl mx-auto w-full flex items-center"
 		>
-			<div class="ml-auto flex items-center gap-2">
+			<div class="ml-auto flex items-center gap-2 text-base-400">
 				for _, link := range navLinks {
 					<a
 						href={ templ.URL(link.href) }
-						class={ "p-2 font-medium", templ.KV("text-primary-300", currentPath(ctx) == link.href) }
+						class={ "p-2 font-medium", templ.KV("text-base-white", currentPath(ctx) == link.href) }
 					>
 						{ link.text }
 					</a>
