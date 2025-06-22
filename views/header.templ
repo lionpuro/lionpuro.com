@@ -1,13 +1,17 @@
 package views
 
-import "context"
+import (
+	"context"
+	"strings"
+)
 
 func currentPath(ctx context.Context) string {
 	val, ok := ctx.Value("path").(string)
 	if !ok {
 		return ""
 	}
-	return val
+	ss := strings.Split(val, "/")
+	return "/" + ss[1]
 }
 
 var navLinks = []struct {
