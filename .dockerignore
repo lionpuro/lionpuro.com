@@ -5,7 +5,6 @@
 Dockerfile
 docker-compose.yml
 Makefile
-.air.toml
 bin/
 tmp/
 node_modules/

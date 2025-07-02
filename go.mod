@@ -12,6 +12,11 @@ require (
 )
 
 require (
+	github.com/bokwoon95/wgo v0.5.13 // indirect
 	github.com/dlclark/regexp2 v1.11.4 // indirect
+	github.com/fsnotify/fsnotify v1.7.0 // indirect
+	golang.org/x/sys v0.28.0 // indirect
 	gopkg.in/yaml.v2 v2.3.0 // indirect
 )
+
+tool github.com/bokwoon95/wgo

@@ -22,5 +22,5 @@ fmt:
 	@templ fmt views
 	@gofmt -l -s -w .
 
-dev:
-	@air -c .air.toml
+run-dev:
+	@./run_dev.sh
