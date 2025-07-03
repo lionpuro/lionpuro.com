@@ -15,9 +15,6 @@ build:
 	@templ generate views
 	@go build -o bin/app .
 
-run: build
-	@./bin/app
-
 fmt:
 	@templ fmt views
 	@gofmt -l -s -w .
