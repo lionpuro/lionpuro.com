@@ -1,4 +1,6 @@
 class ModalImage extends HTMLElement {
+	public minWidth?: number;
+
 	constructor() {
 		super();
 	}

@@ -7,6 +7,7 @@ cleanup() {
 
 trap cleanup EXIT
 
-go tool wgo -debounce 100ms -xfile static/global.css \
-	npx @tailwindcss/cli -i ./input.css -o ./static/global.css --minify \
-	:: wgo -xfile _templ.go -xfile static/global.css templ generate views :: go run .
+go tool wgo -debounce 100ms -xfile _templ.go -xdir assets/public \
+	npm run build \
+	:: wgo -xfile _templ.go -xdir assets/public templ generate views \
+	:: go run .

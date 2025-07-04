@@ -11,7 +11,7 @@ deploy:
 	docker compose -f ./infra/compose.yaml up --build -d
 
 build:
-	@npx @tailwindcss/cli -i ./input.css -o ./static/global.css --minify
+	@npm run build
 	@templ generate views
 	@go build -o bin/app .
 

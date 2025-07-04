@@ -2,7 +2,7 @@ ARG GO_VERSION=1.24.1
 
 # fetch
 FROM golang:${GO_VERSION} AS fetch-stage
-COPY go.mod go.sum /app/
+COPY go.mod go.sum /app
 WORKDIR /app
 RUN go mod download && go mod verify
 
@@ -15,10 +15,9 @@ RUN ["templ", "generate"]
 # npm
 FROM node:22 AS npm-stage
 WORKDIR /app
-COPY package.json package-lock.json ./
-COPY views input.css ./
+COPY . .
 RUN npm install
-RUN npx @tailwindcss/cli -i ./input.css -o ./output.css --minify
+RUN npm run build
 
 # build
 FROM golang:${GO_VERSION} AS build-stage
@@ -29,7 +28,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -v -o /app/server
 # release
 FROM debian:bookworm-slim AS release
 COPY --from=build-stage /app /app
-COPY --from=npm-stage /app/output.css /app/static/global.css
+COPY --from=npm-stage /app/assets/public /app/assets/public
 WORKDIR /app
 
-CMD [ "/app/server" ]
+CMD ["/app/server"]

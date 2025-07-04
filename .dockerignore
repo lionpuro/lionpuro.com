@@ -8,8 +8,7 @@ Makefile
 bin/
 tmp/
 node_modules/
+assets/public/
 
 **/*_templ.go
 **/*_templ.txt
-
-static/global.css
