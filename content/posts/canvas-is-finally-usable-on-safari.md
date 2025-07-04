@@ -18,7 +18,7 @@ than **4096x4096** or a total area of **16,777,216** pixels.
 If the limit is exceeded by even just a few pixels, the canvas will
 break with the following warning in the console.
 
-![Canvas area exceeds the maximum limit (width * height > 16777216).](/static/images/posts/safari-canvas-error.png)
+![Canvas area exceeds the maximum limit (width * height > 16777216).](/assets/images/posts/safari-canvas-error.png)
 
 That's probably more than enough pixels for most use cases, but we found it really... *limiting*.
 The editor canvas itself wasn't anywhere close to the limit,

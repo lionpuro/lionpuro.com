@@ -32,7 +32,7 @@ func main() {
 	}
 	registerRoutes(pageRouter, routes)
 
-	rootRouter.Handle("GET /static/", http.StripPrefix("/static", http.FileServer(http.Dir("assets/public"))))
+	rootRouter.Handle("GET /assets/", http.StripPrefix("/assets", http.FileServer(http.Dir("assets/public"))))
 
 	rootRouter.HandleFunc("/", removeTrailingSlash(
 		commonMiddleware(pageRouter),
