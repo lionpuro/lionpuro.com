@@ -67,6 +67,6 @@ func postHandler(posts *blog.Posts) http.HandlerFunc {
 func notFoundHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotFound)
 	msg := "Page not found"
-	component := views.ErrorPage(http.StatusNotFound, msg)
+	component := views.FullPage(views.ErrorPage(http.StatusNotFound, msg), "Page not found", "")
 	component.Render(r.Context(), w)
 }
