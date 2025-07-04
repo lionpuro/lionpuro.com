@@ -12,11 +12,11 @@ deploy:
 
 build:
 	@npm run build
-	@templ generate views
+	@go tool templ generate views
 	@go build -o bin/app .
 
 fmt:
-	@templ fmt views
+	@go tool templ fmt views
 	@gofmt -l -s -w .
 
 run-dev:
