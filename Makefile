@@ -1,6 +1,8 @@
 include .env
 export
 
+.PHONY: build-image deploy build
+
 build-image:
 	docker build -t lionpuro/lionpuro.com .
 	docker push lionpuro/lionpuro.com
@@ -14,10 +16,3 @@ build:
 	@npm run build
 	@go tool templ generate views
 	@go build -o bin/app .
-
-fmt:
-	@go tool templ fmt views
-	@gofmt -l -s -w .
-
-run-dev:
-	@./run_dev.sh
