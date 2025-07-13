@@ -62,6 +62,14 @@ templ Blog(posts []*blog.Post, tags []string, selectedTag string) {
 						</h2>
 						<div class="text-base-300">{ post.Summary }</div>
 					</a>
+					<a
+						href={ templ.URL(fmt.Sprintf("/posts/%s", post.Slug)) }
+						hx-boost="true"
+						hx-swap="innerHTML show:none"
+						class="whitespace-pre flex text-primary-400 items-center mt-2 hover:underline after:content-['→'] after:font-bold"
+					>
+						{ "Read more " }
+					</a>
 				</article>
 			}
 		</div>
