@@ -130,7 +130,7 @@ body {
 			@apply text-base-white;
 		}
 		a {
-			@apply text-primary-400 font-medium underline;
+			@apply text-primary-400 underline;
 		}
 		ul {
 			list-style-type: disc;
