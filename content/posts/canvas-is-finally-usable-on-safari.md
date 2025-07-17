@@ -79,9 +79,8 @@ BrowserStack saved the day here, but it's not really the best experience.
 Next time I'll probably have to pay for it too, as I've pretty much burned
 through the free credits doing this.
 
-I just heard of another bug in Safari which has been quite problematic
-for a business and creating a lot of work to get around it,
-but I'll have to save that for another time.
+I just heard of another really problematic bug in Safari that's been brewing
+for years and is still unsolved but I'll have to save that for another time.
 
 ## TLDR
 
