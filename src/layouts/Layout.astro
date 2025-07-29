@@ -1,0 +1,103 @@
+---
+import "$styles/index.css";
+import IconGithub from "$components/icons/Github.astro";
+import IconLinkedin from "$components/icons/Linkedin.astro";
+import IconMail from "$components/icons/Mail.astro";
+import { SOCIAL_LINKS } from "$config";
+
+type Props = {
+	route: string;
+	title: string;
+	description: string;
+};
+const { route, title, description } = Astro.props;
+
+const links: { href: string; text: string }[] = [
+	{ href: "/", text: "Home" },
+	{ href: "/projects", text: "Projects" },
+	{ href: "/posts", text: "Posts" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="format-detection" content="telephone=no" />
+		<link
+			rel="preload"
+			href="/fonts/inter/inter-latin-wght-normal.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+		<script src="/scripts/htmx.min.js" defer></script>
+	</head>
+	<body>
+		<div id="root" class="flex flex-col min-h-full w-full max-w-3xl mx-auto">
+			<header class="flex items-center bg-base-950 py-2 px-6 sm:px-8 mb-8">
+				<nav
+					hx-boost="true"
+					hx-swap="innerHTML show:none"
+					class="max-w-4xl mx-auto w-full flex items-center"
+				>
+					<div class="ml-auto flex items-center gap-2 text-base-400">
+						{
+							links.map((link) => (
+								<a
+									href={link.href}
+									class={`p-2 font-medium ${route === link.href ? "text-base-white" : ""}`}
+								>
+									{link.text}
+								</a>
+							))
+						}
+					</div>
+				</nav>
+			</header>
+			<main id="content" class="flex flex-col p-6 sm:p-8 grow">
+				<slot />
+			</main>
+			<footer
+				class="mt-auto flex items-center justify-between p-2 px-6 sm:px-8 text-sm"
+			>
+				<span class="font-medium text-base-600" data-nosnippet>
+					© Lion Puro
+				</span>
+				<div class="flex">
+					<a
+						href={SOCIAL_LINKS.github_url}
+						aria-label="github"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="flex items-center gap-2 p-2 font-medium text-base-300 hover:text-base-50"
+					>
+						<IconGithub classes="size-6" />
+					</a>
+					<a
+						href={SOCIAL_LINKS.linkedin_url}
+						aria-label="linkedin"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="flex items-center gap-2 p-2 font-medium text-base-300 hover:text-base-50"
+					>
+						<IconLinkedin classes="size-6" />
+					</a>
+					<a
+						href={`mailto:${SOCIAL_LINKS.email}`}
+						aria-label="email"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="flex items-center gap-2 p-2 font-medium text-base-300 hover:text-base-50"
+					>
+						<IconMail classes="size-6" />
+					</a>
+				</div>
+			</footer>
+		</div>
+	</body>
+</html>

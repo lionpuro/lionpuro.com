@@ -1,20 +1,24 @@
-*.exe
-*.exe~
-*.dll
-*.so
-*.dylib
+# build output
+dist/
+# generated types
+.astro/
 
-*.test
-go.work
-go.work.sum
+# dependencies
+node_modules/
 
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+
+# environment variables
 .env
+.env.production
 
-node_modules
-bin
-tmp
+# macOS-specific files
+.DS_Store
 
-**/*_templ.go
-**/*_templ.txt
-
-assets/public
+# jetbrains setting folder
+.idea/
