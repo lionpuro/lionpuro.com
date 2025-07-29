@@ -1,0 +1,60 @@
+---
+import Layout from "$layouts/Layout.astro";
+import H1 from "$components/H1.astro";
+import { fetchPosts, dateString } from "$utils";
+import { SITE_NAME } from "$config";
+
+const posts = await fetchPosts();
+---
+
+<Layout
+	route="/posts"
+	title={"Posts - " + SITE_NAME}
+	description="Thoughts and notes, mostly related to web development."
+>
+	<div class="flex flex-col">
+		<div class="flex flex-col gap-2 mb-4">
+			<H1>Posts</H1>
+			<p class="text-base-300">
+				Thoughts and notes, mostly related to web development.
+			</p>
+		</div>
+		<div class="flex flex-col">
+			{
+				posts.map((post) => (
+					<article class="py-4">
+						<a
+							href={`/posts/${post.id}`}
+							hx-boost="true"
+							hx-swap="innerHTML show:none"
+							class="flex flex-col gap-2 hover:[&>h2]:underline"
+						>
+							<div class="flex gap-3">
+								<span class="text-base-500 text-sm font-medium mr-auto">
+									{dateString(post.data.date)}
+								</span>
+								{post.data.tags?.map((tag) => (
+									<span class="text-primary-400 text-sm font-medium">
+										#{tag}
+									</span>
+								))}
+							</div>
+							<h2 class="text-xl font-semibold decoration-1 underline-offset-2">
+								{post.data.title}
+							</h2>
+							<div class="text-base-300">{post.data.summary}</div>
+						</a>
+						<a
+							href={`/posts/${post.id}`}
+							hx-boost="true"
+							hx-swap="innerHTML show:none"
+							class="flex text-primary-400 items-center mt-2 hover:underline"
+						>
+							{"Read more →"}
+						</a>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</Layout>

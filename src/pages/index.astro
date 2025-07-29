@@ -1,0 +1,23 @@
+---
+import Layout from "$layouts/Layout.astro";
+import { SITE_NAME } from "$config";
+---
+
+<Layout
+	route="/"
+	title={SITE_NAME}
+	description="Full stack developer from Finland. Here I document my journey as a developer."
+>
+	<div class="my-auto flex flex-col justify-center pb-8">
+		<div class="flex max-w-xl flex-col">
+			<div class="flex flex-col mb-4">
+				<h1 class="text-2xl font-bold">Lion Puro</h1>
+				<p class="text-base-400">Full stack developer</p>
+			</div>
+			<p class="text-base-300">
+				Hello, I'm Lion. I'm a <strong>web developer</strong> from Finland. Here
+				I document my journey and share what I've been working on.
+			</p>
+		</div>
+	</div>
+</Layout>

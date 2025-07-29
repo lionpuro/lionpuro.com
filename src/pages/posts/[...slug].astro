@@ -1,0 +1,47 @@
+---
+import Layout from "$layouts/Layout.astro";
+import { dateString, fetchPosts } from "$utils";
+import type { CollectionEntry } from "astro:content";
+import { render } from "astro:content";
+
+export async function getStaticPaths() {
+	const posts = await fetchPosts();
+	return posts.map((post) => ({
+		params: { slug: post.id },
+		props: post,
+	}));
+}
+
+type Props = CollectionEntry<"posts">;
+const post = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout route="/posts" title={post.data.title} description={post.data.summary}>
+	<div class="flex flex-col leading-7">
+		<span class="text-sm text-base-400 font-medium mb-1">
+			{dateString(post.data.date)}
+		</span>
+		<div class="blog-post flex flex-col">
+			<Content />
+		</div>
+		{
+			!!post.data.tags ? (
+				<div class="mt-4 flex gap-3">
+					<span class="text-base-400 text-sm font-medium">Tags:</span>
+					{post.data.tags.map((tag) => (
+						<span class="text-base-200 text-sm font-medium">#{tag}</span>
+					))}
+				</div>
+			) : null
+		}
+		<a
+			href="/posts"
+			hx-boost="true"
+			hx-swap="innerHTML show:none"
+			class="flex text-primary-400 items-center mt-6 hover:underline"
+		>
+			{"← Back to posts"}
+		</a>
+	</div>
+</Layout>

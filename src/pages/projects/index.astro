@@ -1,0 +1,118 @@
+---
+import Layout from "$layouts/Layout.astro";
+import H1 from "$components/H1.astro";
+import IconGithub from "$components/icons/Github.astro";
+import IconLink from "$components/icons/Link.astro";
+import { SITE_NAME } from "$config";
+
+type Project = {
+	id: string;
+	image: string;
+	url?: string;
+	repo?: string;
+	tags: string[];
+	title: string;
+	description: string;
+};
+
+const projects: Project[] = [
+	{
+		id: "mug-editor",
+		image: "/images/projects/mug-editor-demo.webp",
+		url: "https://kankainen.org/mukieditori",
+		tags: ["TypeScript", "React"],
+		title: "Mug editor",
+		description:
+			"A mug designing tool for a photographer's online store. Customers can use it customize printable mugs to their liking with images and text.",
+	},
+	{
+		id: "neverexpire",
+		image: "/images/projects/neverexpire.webp",
+		repo: "https://github.com/lionpuro/neverexpire",
+		tags: ["Go", "HTMX", "PostgreSQL"],
+		title: "NeverExpire",
+		description:
+			"SSL/TLS certificate monitoring service that keeps track of expiration dates for your certs and reminds you to renew them ahead of time.",
+	},
+	{
+		id: "collage-maker",
+		image: "/images/projects/collage-maker-demo.webp",
+		url: "https://svelte-collage.netlify.app",
+		repo: "https://github.com/lionpuro/collage-maker",
+		tags: ["TypeScript", "Svelte"],
+		title: "Svelte collage maker",
+		description: "A tool for creating collages built with Svelte and Konva.js",
+	},
+];
+---
+
+<Layout
+	route="/projects"
+	title={"Projects - " + SITE_NAME}
+	description="Full stack developer from Finland. Here I document my journey as a developer."
+>
+	<script src="$modal-image.ts"></script>
+	<div class="flex flex-col">
+		<div class="flex flex-col mb-4">
+			<H1> Projects </H1>
+		</div>
+		<div class="flex flex-col">
+			{
+				projects.map((p) => (
+					<div class="flex max-md:flex-col-reverse md:flex-row gap-4 md:gap-8 my-4">
+						<div class="grow flex flex-col gap-3">
+							<div class="flex items-center gap-2">
+								<h2 class="text-xl font-semibold">{p.title}</h2>
+								<span class="ml-auto flex gap-2">
+									{!!p.repo && (
+										<a
+											href={p.repo}
+											target="_blank"
+											rel="noreferrer"
+											class="text-base-400 hover:text-base-50"
+										>
+											<IconGithub />
+										</a>
+									)}
+									{!!p.url && (
+										<a
+											href={p.url}
+											target="_blank"
+											rel="noreferrer"
+											class="text-base-400 hover:text-base-50"
+										>
+											<IconLink />
+										</a>
+									)}
+								</span>
+							</div>
+							<p class="text-base-300">{p.description}</p>
+							<div class="flex gap-2 mt-auto">
+								{p.tags.map((t) => (
+									<div class="rounded-sm bg-base-900 p-1 px-2 text-sm font-medium">
+										{t}
+									</div>
+								))}
+							</div>
+						</div>
+						<modal-image minWidth="768" class="shrink-0 md:w-1/2">
+							<a
+								href={p.image}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="max-md:cursor-default"
+							>
+								<img
+									src={p.image}
+									alt=""
+									loading="lazy"
+									class="shrink-0 rounded-sm object-contain aspect-video w-full"
+								/>
+							</a>
+						</modal-image>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</Layout>
