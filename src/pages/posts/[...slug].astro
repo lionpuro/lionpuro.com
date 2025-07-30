@@ -17,7 +17,7 @@ const post = Astro.props;
 const { Content } = await render(post);
 ---
 
-<Layout route="/posts" title={post.data.title} description={post.data.summary}>
+<Layout route="/posts/" title={post.data.title} description={post.data.summary}>
 	<div class="flex flex-col leading-7">
 		<span class="text-sm text-base-400 font-medium mb-1">
 			{dateString(post.data.date)}
