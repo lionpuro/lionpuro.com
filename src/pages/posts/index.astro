@@ -25,8 +25,6 @@ const posts = await fetchPosts();
 					<article class="py-4">
 						<a
 							href={`/posts/${post.id}/`}
-							hx-boost="true"
-							hx-swap="innerHTML show:none"
 							class="flex flex-col gap-2 hover:[&>h2]:underline"
 						>
 							<div class="flex gap-3">
@@ -48,8 +46,6 @@ const posts = await fetchPosts();
 						</a>
 						<a
 							href={`/posts/${post.id}/`}
-							hx-boost="true"
-							hx-swap="innerHTML show:none"
 							class="flex text-primary-400 items-center mt-2 hover:underline"
 						>
 							{"Read more →"}
