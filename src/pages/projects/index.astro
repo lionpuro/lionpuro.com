@@ -3,7 +3,7 @@ import Layout from "$layouts/Layout.astro";
 import H1 from "$components/H1.astro";
 import IconGithub from "$components/icons/Github.astro";
 import IconLink from "$components/icons/Link.astro";
-import { SITE_NAME } from "$config";
+import { ROUTES, SITE_NAME } from "$config";
 
 type Project = {
 	id: string;
@@ -47,7 +47,7 @@ const projects: Project[] = [
 ---
 
 <Layout
-	route="/projects/"
+	route={ROUTES.projects}
 	title={"Projects - " + SITE_NAME}
 	description="Full stack developer from Finland. Here I document my journey as a developer."
 >

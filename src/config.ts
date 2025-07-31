@@ -5,3 +5,9 @@ export const SOCIAL_LINKS = {
 	linkedin_url: "https://www.linkedin.com/in/lion-puro-09bb4b1a1/",
 	email: "connect@lionpuro.com",
 };
+
+export const ROUTES = {
+	home: "/",
+	projects: "/projects/",
+	posts: "/posts/",
+};

@@ -1,5 +1,6 @@
 ---
 import ExternalLink from "$components/ExternalLink.astro";
+import { ROUTES } from "$config";
 import Layout from "$layouts/Layout.astro";
 import { dateString, fetchPosts } from "$utils";
 import type { CollectionEntry } from "astro:content";
@@ -18,7 +19,11 @@ const post = Astro.props;
 const { Content } = await render(post);
 ---
 
-<Layout route="/posts/" title={post.data.title} description={post.data.summary}>
+<Layout
+	route={ROUTES.posts}
+	title={post.data.title}
+	description={post.data.summary}
+>
 	<div class="flex flex-col leading-7">
 		<span class="text-sm text-base-400 font-medium mb-1">
 			{dateString(post.data.date)}
@@ -37,7 +42,7 @@ const { Content } = await render(post);
 			) : null
 		}
 		<a
-			href="/posts"
+			href={ROUTES.posts}
 			hx-boost="true"
 			hx-swap="innerHTML show:none"
 			class="flex text-primary-400 items-center mt-6 hover:underline"
