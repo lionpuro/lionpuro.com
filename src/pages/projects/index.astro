@@ -3,6 +3,7 @@ import Layout from "$layouts/Layout.astro";
 import H1 from "$components/H1.astro";
 import IconGithub from "$components/icons/Github.astro";
 import IconLink from "$components/icons/Link.astro";
+import ModalImage from "$components/ModalImage.astro";
 import { ROUTES, SITE_NAME } from "$config";
 
 type Project = {
@@ -51,7 +52,6 @@ const projects: Project[] = [
 	title={"Projects - " + SITE_NAME}
 	description="Full stack developer from Finland. Here I document my journey as a developer."
 >
-	<script src="$modal-image.ts"></script>
 	<div class="flex flex-col">
 		<div class="flex flex-col mb-4">
 			<H1> Projects </H1>
@@ -95,21 +95,7 @@ const projects: Project[] = [
 								))}
 							</div>
 						</div>
-						<modal-image minWidth="768" class="shrink-0 md:w-1/2">
-							<a
-								href={p.image}
-								target="_blank"
-								rel="noopener noreferrer"
-								class="max-md:cursor-default"
-							>
-								<img
-									src={p.image}
-									alt=""
-									loading="lazy"
-									class="shrink-0 rounded-sm object-contain aspect-video w-full"
-								/>
-							</a>
-						</modal-image>
+						<ModalImage src={p.image} />
 					</div>
 				))
 			}
