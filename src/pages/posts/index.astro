@@ -24,7 +24,7 @@ const posts = await fetchPosts();
 				posts.map((post) => (
 					<article class="py-4">
 						<a
-							href={`/posts/${post.id}`}
+							href={`/posts/${post.id}/`}
 							hx-boost="true"
 							hx-swap="innerHTML show:none"
 							class="flex flex-col gap-2 hover:[&>h2]:underline"
@@ -47,7 +47,7 @@ const posts = await fetchPosts();
 							</div>
 						</a>
 						<a
-							href={`/posts/${post.id}`}
+							href={`/posts/${post.id}/`}
 							hx-boost="true"
 							hx-swap="innerHTML show:none"
 							class="flex text-primary-400 items-center mt-2 hover:underline"
