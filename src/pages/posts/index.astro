@@ -42,7 +42,9 @@ const posts = await fetchPosts();
 							<h2 class="text-xl font-semibold decoration-1 underline-offset-2">
 								{post.data.title}
 							</h2>
-							<div class="text-base-300">{post.data.summary}</div>
+							<div class="text-base-300 max-sm:text-sm">
+								{post.data.summary}
+							</div>
 						</a>
 						<a
 							href={`/posts/${post.id}`}

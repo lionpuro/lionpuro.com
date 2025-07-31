@@ -62,7 +62,7 @@ const projects: Project[] = [
 					<div class="flex max-md:flex-col-reverse md:flex-row gap-4 md:gap-8 my-4">
 						<div class="grow flex flex-col gap-3">
 							<div class="flex items-center gap-2">
-								<h2 class="text-xl font-semibold">{p.title}</h2>
+								<h2 class="text-lg sm:text-xl font-semibold">{p.title}</h2>
 								<span class="ml-auto flex gap-2">
 									{!!p.repo && (
 										<a
@@ -71,7 +71,7 @@ const projects: Project[] = [
 											rel="noreferrer"
 											class="text-base-400 hover:text-base-50"
 										>
-											<IconGithub />
+											<IconGithub classes="max-sm:size-5" />
 										</a>
 									)}
 									{!!p.url && (
@@ -81,15 +81,15 @@ const projects: Project[] = [
 											rel="noreferrer"
 											class="text-base-400 hover:text-base-50"
 										>
-											<IconLink />
+											<IconLink classes="max-sm:size-5" />
 										</a>
 									)}
 								</span>
 							</div>
-							<p class="text-base-300">{p.description}</p>
+							<p class="text-base-300 max-sm:text-sm">{p.description}</p>
 							<div class="flex gap-2 mt-auto">
 								{p.tags.map((t) => (
-									<div class="rounded-sm bg-base-900 p-1 px-2 text-sm font-medium">
+									<div class="rounded-sm bg-base-900 p-1 px-2 text-xs sm:text-sm font-medium">
 										{t}
 									</div>
 								))}
