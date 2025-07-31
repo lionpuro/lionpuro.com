@@ -47,13 +47,12 @@ It was starting to look promising, but I still had to find
 the exact limit as well as the iOS version where it was changed.
 I checked the release notes again, but as expected, found no mention of this.
 
-Next, I ran some tests using <a href="https://www.npmjs.com/package/canvas-size" target="_blank" rel="noopener noreferrer">canvas-size</a>, which showed that the new limit is **8192x8192** with a total area of
+Next, I ran some tests using [canvas-size](https://www.npmjs.com/package/canvas-size), which showed that the new limit is **8192x8192** with a total area of
 **67,108,864** pixels. Seeing that nothing had changed for my old iPad running
 iOS 17.7.5, it seemed like they most likely changed it in iOS 18.0, but I had to
 be confirm that another way, as my phone was running on a newer minor version.
 
-So, I signed up for <a href="https://www.browserstack.com/"
-target="_blank" rel="noopener noreferrer">BrowserStack</a> and ran the same tests on their
+So, I signed up for [BrowserStack](https://www.browserstack.com) and ran the same tests on their
 iPhone 13's with the following results:
 
 | Version | Max Area    | Pixels     |

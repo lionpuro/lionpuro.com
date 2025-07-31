@@ -1,4 +1,5 @@
 ---
+import ExternalLink from "$components/ExternalLink.astro";
 import Layout from "$layouts/Layout.astro";
 import { dateString, fetchPosts } from "$utils";
 import type { CollectionEntry } from "astro:content";
@@ -23,7 +24,7 @@ const { Content } = await render(post);
 			{dateString(post.data.date)}
 		</span>
 		<div class="blog-post flex flex-col">
-			<Content />
+			<Content components={{ a: ExternalLink }} />
 		</div>
 		{
 			!!post.data.tags ? (
