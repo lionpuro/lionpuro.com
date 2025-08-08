@@ -60,7 +60,8 @@ const projects: Project[] = [
 		<div class="flex flex-col">
 			{
 				projects.map((p) => (
-					<div class="flex max-md:flex-col-reverse md:flex-row gap-4 md:gap-8 my-4">
+					<div class="flex flex-col gap-4 my-4 md:my-6">
+						<ModalImage src={p.image} />
 						<div class="grow flex flex-col gap-3">
 							<div class="flex items-center gap-2">
 								<h2 class="text-lg sm:text-xl font-semibold">{p.title}</h2>
@@ -96,7 +97,6 @@ const projects: Project[] = [
 								))}
 							</div>
 						</div>
-						<ModalImage src={p.image} />
 					</div>
 				))
 			}
