@@ -1,6 +1,6 @@
 ---
 import Layout from "$layouts/Layout.astro";
-import { SITE_NAME, ROUTES } from "$config";
+import { SITE_NAME, ROUTES, SOCIAL_LINKS } from "$config";
 ---
 
 <Layout
@@ -8,15 +8,35 @@ import { SITE_NAME, ROUTES } from "$config";
 	title={SITE_NAME}
 	description="Full stack developer from Finland. Here I document my journey as a developer."
 >
-	<div class="my-auto flex flex-col justify-center pb-8">
+	<div class="my-auto flex flex-col justify-center pb-22">
 		<div class="flex max-w-xl flex-col">
 			<div class="flex flex-col mb-4">
 				<h1 class="text-2xl font-bold">Lion Puro</h1>
-				<p class="text-base-400">Full stack developer</p>
+				<div class="flex items-center gap-2 text-sm font-medium">
+					<a
+						href={SOCIAL_LINKS.github_url}
+						aria-label="github"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="underline text-base-300 hover:text-base-50"
+					>
+						github
+					</a>
+					<a
+						href={SOCIAL_LINKS.linkedin_url}
+						aria-label="linkedin"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="underline text-base-300 hover:text-base-50"
+					>
+						linkedin
+					</a>
+				</div>
 			</div>
 			<p class="text-base-300">
-				Hello, I'm Lion. I'm a <strong>web developer</strong> from Finland. Here
-				I document my journey and share what I've been working on.
+				Hello, I'm Lion. I'm a <strong>software developer</strong> mainly focused
+				on web development. Here you can find some of the stuff I've been working
+				on.
 			</p>
 		</div>
 	</div>
