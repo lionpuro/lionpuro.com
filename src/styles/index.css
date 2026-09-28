@@ -80,6 +80,10 @@ body {
 	@apply bg-base-950 text-base-white;
 }
 
+body:has(dialog[open]) {
+	overflow: hidden;
+}
+
 @layer base {
 	strong,
 	b {
