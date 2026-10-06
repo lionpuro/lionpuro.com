@@ -1,9 +1,6 @@
 ---
 import "$styles/index.css";
-import IconGithub from "$components/icons/Github.astro";
-import IconLinkedin from "$components/icons/Linkedin.astro";
-import IconMail from "$components/icons/Mail.astro";
-import { ROUTES, SOCIAL_LINKS } from "$config";
+import { ROUTES } from "$config";
 
 type Props = {
 	route: string;
@@ -57,42 +54,6 @@ const links: { href: string; text: string }[] = [
 			<main id="content" class="flex flex-col p-6 sm:p-8 grow">
 				<slot />
 			</main>
-			<footer
-				class="mt-auto flex items-center justify-between p-2 px-6 sm:px-8 text-sm"
-			>
-				<span class="font-medium text-base-600" data-nosnippet>
-					© Lion Puro
-				</span>
-				<div class="flex">
-					<a
-						href={SOCIAL_LINKS.github_url}
-						aria-label="github"
-						target="_blank"
-						rel="noopener noreferrer"
-						class="flex items-center gap-2 p-2 font-medium text-base-300 hover:text-base-50"
-					>
-						<IconGithub classes="size-6" />
-					</a>
-					<a
-						href={SOCIAL_LINKS.linkedin_url}
-						aria-label="linkedin"
-						target="_blank"
-						rel="noopener noreferrer"
-						class="flex items-center gap-2 p-2 font-medium text-base-300 hover:text-base-50"
-					>
-						<IconLinkedin classes="size-6" />
-					</a>
-					<a
-						href={`mailto:${SOCIAL_LINKS.email}`}
-						aria-label="email"
-						target="_blank"
-						rel="noopener noreferrer"
-						class="flex items-center gap-2 p-2 font-medium text-base-300 hover:text-base-50"
-					>
-						<IconMail classes="size-6" />
-					</a>
-				</div>
-			</footer>
 		</div>
 	</body>
 </html>
