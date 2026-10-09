@@ -40,8 +40,8 @@
 	--color-primary-950: #1b234b;
 
 	--color-accent: #fc5d7c;
+	--color-white: #f6f6f6;
 
-	--color-base-white: #f6f6f6;
 	--color-base-50: #e8e8e8;
 	--color-base-100: #dbdbdb;
 	--color-base-200: #c4c4c4;
@@ -53,6 +53,13 @@
 	--color-base-800: #3b3b3b;
 	--color-base-900: #242424;
 	--color-base-950: #171717;
+
+	--color-background: var(--color-base-950);
+	--color-foreground: var(--color-white);
+	--color-primary: var(--color-primary-600);
+	--color-muted-foreground: var(--color-base-300);
+	--color-card: var(--color-base-900);
+	--color-border: var(--color-base-800);
 }
 
 :root {
@@ -66,6 +73,9 @@
 	-webkit-text-size-adjust: 100%;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+
+	color: var(--color-foreground);
+	background-color: var(--color-background);
 }
 
 html,
@@ -76,10 +86,6 @@ body {
 	padding: 0;
 }
 
-body {
-	@apply bg-base-950 text-base-white;
-}
-
 body:has(dialog[open]) {
 	overflow: hidden;
 }
@@ -87,10 +93,13 @@ body:has(dialog[open]) {
 @layer base {
 	strong,
 	b {
-		@apply font-medium text-base-white;
+		@apply font-medium text-foreground;
 	}
 	button {
 		@apply cursor-pointer;
+	}
+	* {
+		@apply border-border;
 	}
 }
 
@@ -108,7 +117,7 @@ body:has(dialog[open]) {
 	}
 
 	.modal-image__close {
-		@apply absolute -top-10 -right-10 flex justify-center items-center size-10 text-3xl text-base-white outline-none;
+		@apply absolute -top-10 -right-10 flex justify-center items-center size-10 text-3xl text-foreground outline-none;
 	}
 
 	.modal-image__image {
@@ -128,20 +137,20 @@ body:has(dialog[open]) {
 			@apply text-lg font-semibold mb-3 mt-4;
 		}
 		p {
-			@apply text-base-200 mb-4 max-w-2xl;
+			@apply text-foreground/80 mb-4 max-w-2xl;
 		}
 		pre {
-			@apply mb-4 p-4 bg-base-900 rounded-md overflow-x-auto;
+			@apply mb-4 p-4 bg-card rounded-md overflow-x-auto;
 		}
 		pre > code {
 			font-family: monospace;
-			@apply text-base-50 text-sm sm:text-base;
+			@apply text-foreground/90 text-sm sm:text-base;
 		}
 		p > code {
 			@apply text-accent;
 		}
 		em {
-			@apply text-base-white;
+			@apply text-foreground;
 		}
 		a {
 			@apply text-primary-400 underline;
@@ -152,7 +161,7 @@ body:has(dialog[open]) {
 		}
 		li {
 			display: list-item;
-			@apply text-base-200 pl-2;
+			@apply text-muted-foreground pl-2;
 		}
 		li::marker {
 			@apply text-base-600;
@@ -162,7 +171,7 @@ body:has(dialog[open]) {
 		}
 		th {
 			text-align: left;
-			@apply py-1 px-2 bg-base-950 font-semibold text-sm;
+			@apply py-1 px-2 bg-background font-semibold text-sm;
 		}
 		th:first-child {
 			@apply pl-1;
@@ -171,7 +180,7 @@ body:has(dialog[open]) {
 			@apply pr-1;
 		}
 		td {
-			@apply py-1 px-2 text-base-200 max-sm:text-sm;
+			@apply py-1 px-2 text-muted-foreground max-sm:text-sm;
 		}
 		td:first-child {
 			@apply pl-1;
@@ -180,13 +189,13 @@ body:has(dialog[open]) {
 			@apply pr-1;
 		}
 		tbody > tr {
-			@apply border-t border-base-900;
+			@apply border-t;
 		}
 		blockquote {
 			display: flex;
 			@apply mb-4;
 			p {
-				@apply m-0 italic text-base-100;
+				@apply m-0 italic text-foreground;
 			}
 			strong {
 				font-style: normal;

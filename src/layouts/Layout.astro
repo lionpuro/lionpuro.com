@@ -35,14 +35,14 @@ const links: { href: string; text: string }[] = [
 	</head>
 	<body>
 		<div id="root" class="flex flex-col min-h-full w-full max-w-3xl mx-auto">
-			<header class="flex items-center bg-base-950 py-2 px-6 sm:px-8 mb-8">
+			<header class="flex items-center bg-background py-2 px-6 sm:px-8 mb-8">
 				<nav class="max-w-4xl mx-auto w-full flex items-center">
-					<div class="ml-auto flex items-center gap-2 text-base-400">
+					<div class="ml-auto flex items-center gap-2 text-muted-foreground/80">
 						{
 							links.map((link) => (
 								<a
 									href={link.href}
-									class={`p-2 font-medium ${route === link.href ? "text-base-white" : ""}`}
+									class={`p-2 font-medium ${route === link.href ? "text-foreground" : ""}`}
 								>
 									{link.text}
 								</a>
