@@ -1,0 +1,39 @@
+---
+import Moon from "$components/icons/Moon.astro";
+import Sun from "$components/icons/Sun.astro";
+---
+
+<script>
+	const theme = (() => {
+		const value = localStorage.getItem("theme");
+		if (value !== "light" && value !== "dark") {
+			const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+			return dark ? "dark" : "light";
+		}
+		return value;
+	})();
+	if (theme === "light") {
+		document.documentElement.classList.remove("dark");
+	}
+	if (theme === "dark") {
+		document.documentElement.classList.add("dark");
+	}
+	localStorage.setItem("theme", theme);
+
+	function onToggle() {
+		const doc = document.documentElement;
+		doc.classList.toggle("dark");
+		const dark = doc.classList.contains("dark");
+		localStorage.setItem("theme", dark ? "dark" : "light");
+	}
+
+	document.querySelector("#theme-switch")?.addEventListener("click", onToggle);
+</script>
+
+<button
+	id="theme-switch"
+	class="flex text-xl text-muted-foreground hover:text-foreground"
+>
+	<Sun id="icon-sun" class="hidden dark:block" />
+	<Moon id="icon-moon" class="dark:hidden" />
+</button>
