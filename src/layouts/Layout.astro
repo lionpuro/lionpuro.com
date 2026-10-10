@@ -1,6 +1,7 @@
 ---
 import "$styles/index.css";
 import { ROUTES } from "$config";
+import ThemeSwitch from "$components/ThemeSwitch.astro";
 
 type Props = {
 	route: string;
@@ -36,7 +37,7 @@ const links: { href: string; text: string }[] = [
 	<body>
 		<div id="root" class="flex flex-col min-h-full w-full max-w-3xl mx-auto">
 			<header class="flex items-center bg-background py-2 px-6 sm:px-8 mb-8">
-				<nav class="max-w-4xl mx-auto w-full flex items-center">
+				<nav class="max-w-4xl mx-auto w-full flex items-center mr-3">
 					<div class="ml-auto flex items-center gap-2 text-muted-foreground/80">
 						{
 							links.map((link) => (
@@ -50,6 +51,7 @@ const links: { href: string; text: string }[] = [
 						}
 					</div>
 				</nav>
+				<ThemeSwitch />
 			</header>
 			<main id="content" class="flex flex-col p-6 sm:p-8 grow">
 				<slot />
