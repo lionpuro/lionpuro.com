@@ -4,7 +4,8 @@ import H1 from "$components/H1.astro";
 import IconGithub from "$components/icons/Github.astro";
 import IconLink from "$components/icons/Link.astro";
 import ModalImage from "$components/ModalImage.astro";
-import { ROUTES, SITE_NAME } from "$config";
+import { ROUTES } from "$config";
+import { SITE_NAME } from "astro:env/server";
 
 type Project = {
 	id: string;

@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from "astro/config";
+import { defineConfig, envField } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import mdx from "@astrojs/mdx";
 
@@ -8,6 +8,14 @@ export default defineConfig({
 	trailingSlash: "always",
 	devToolbar: {
 		enabled: false,
+	},
+	env: {
+		schema: {
+			SITE_NAME: envField.string({ context: "server", access: "public" }),
+			GITHUB: envField.string({ context: "server", access: "public" }),
+			LINKEDIN: envField.string({ context: "server", access: "public" }),
+			EMAIL: envField.string({ context: "server", access: "public" }),
+		},
 	},
 	integrations: [mdx()],
 	vite: {
