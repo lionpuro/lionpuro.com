@@ -1,6 +1,7 @@
 ---
 import Layout from "$layouts/Layout.astro";
-import { SITE_NAME, ROUTES, SOCIAL_LINKS } from "$config";
+import { ROUTES } from "$config";
+import { SITE_NAME, GITHUB, LINKEDIN } from "astro:env/server";
 ---
 
 <Layout
@@ -14,7 +15,7 @@ import { SITE_NAME, ROUTES, SOCIAL_LINKS } from "$config";
 				<h1 class="text-2xl font-bold">Lion Puro</h1>
 				<div class="flex items-center gap-2 text-sm font-medium">
 					<a
-						href={SOCIAL_LINKS.github_url}
+						href={GITHUB}
 						aria-label="github"
 						target="_blank"
 						rel="noopener noreferrer"
@@ -23,7 +24,7 @@ import { SITE_NAME, ROUTES, SOCIAL_LINKS } from "$config";
 						github
 					</a>
 					<a
-						href={SOCIAL_LINKS.linkedin_url}
+						href={LINKEDIN}
 						aria-label="linkedin"
 						target="_blank"
 						rel="noopener noreferrer"
